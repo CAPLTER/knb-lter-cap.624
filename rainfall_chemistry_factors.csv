@@ -1,0 +1,23 @@
+attributeName,code,definition
+rain_location,BV,Bella Vista
+rain_location,CB,Camelback
+rain_location,ENC,Encantada
+rain_location,IBW,Indian Bend Wash
+rain_location,KP,Kiwanis Park
+rain_location,LM,Lake Marguerite
+rain_location,MR,Martin Residence
+rain_location,MS,Montessori
+rain_location,PIE,Pierce
+rain_location,SGC,Silverado Golf Course
+rain_location,SW,Sweetwater
+analysis,CaD_ICP,dissolved calcium (ICP)
+analysis,ClD_LACHAT,dissolved chloride (LACHAT)
+analysis,DOC_TOC,dissolved organic carbon
+analysis,NaD_ICP,dissolved sodium (ICP)
+analysis,NH4_LACHAT,ammonium-nitrogen (LACHAT)
+analysis,NO3D_LACHAT,dissolved nitrate-nitrogen (Lachat)
+analysis,NO3T_TOC_TN,total nitrogen by combustion analysis TOC/TN
+analysis,NO3T_TRAACS,"total dissolved nitrogen (TRAACS); NH4-N, NO3-N and DON are oxidized to NO3-N and measured together"
+analysis,PO4D_LACHAT,dissolved phosphorus (LACHAT)
+analysis,PO4T_TRAACS,total phosphorus (TRAACS)
+analysis,ZnD_ICP,dissolved zinc (ICP-OES)

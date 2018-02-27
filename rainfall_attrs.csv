@@ -1,0 +1,4 @@
+attributeName,formatString,unit,numberType,definition,attributeDefinition,columnClasses,minimum,maximum,missingValueCode,missingValueCodeExplanation
+rain_location,,,,,location short code,factor,,,,
+rain_datetime,YYYY-MM-DD hh:mm:ss,,,,measurement date and time,Date,,,,
+rain_quantity,,millimeter,real,,precipitation amount,numeric,0,4.064,,

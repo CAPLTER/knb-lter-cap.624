@@ -1,0 +1,40 @@
+attributeName,code,definition
+runoff_location,Ave7th,7th Avenue
+runoff_location,BV,Bella Vista
+runoff_location,CB,Camelback
+runoff_location,centralNorth,central north
+runoff_location,centralSouth,central south
+runoff_location,ENC,Encantada
+runoff_location,IBW,Indian Bend Wash
+runoff_location,KP,Kiwanis Park
+runoff_location,LM,Lake Marguerite
+runoff_location,MR,Martin Residence
+runoff_location,MS,Montessori
+runoff_location,PIE,Pierce
+runoff_location,Price,Price drain
+runoff_location,SGC,Silverado Golf Course
+runoff_location,SW,Sweetwater
+analysis,CaD_FLAME_AA,dissolved calcium (FLAME AA)
+analysis,CaD_ICP,dissolved calcium (ICP)
+analysis,ClD_LACHAT,dissolved chloride (LACHAT)
+analysis,DOC_TOC,dissolved organic carbon
+analysis,KD_ICP,dissolved potassium (ICP)
+analysis,MgD_ICP,dissolved magnesium (ICP)
+analysis,NaD_ICP,dissolved sodium (ICP)
+analysis,NH4_LACHAT,ammonium-nitrogen (LACHAT)
+analysis,NiD_ICP,dissolved nickel (ICP-OES)
+analysis,NO2D_LACHAT,dissolved nitrite-nitrogen (LACHAT)
+analysis,NO3D_IC,dissolved nitrate-nitrogen (IC)
+analysis,NO3D_LACHAT,dissolved nitrate-nitrogen (Lachat)
+analysis,NO3T_AQ2,total nitrogen (AQ2)
+analysis,NO3T_TOC_TN,total nitrogen by combustion analysis TOC/TN
+analysis,NO3T_TRAACS,"total dissolved nitrogen (TRAACS); NH4-N, NO3-N and DON are oxidized to NO3-N and measured together"
+analysis,PbD_ICP,dissolved lead (ICP-OES)
+analysis,PO4D_LACHAT,dissolved phosphorus (LACHAT)
+analysis,PO4T_AQ2,total phosphorus (AQ2)
+analysis,PO4T_LACHAT,total phosphorus (LACHAT)
+analysis,PO4T_TRAACS,total phosphorus (TRAACS)
+analysis,SO4D_IC,dissolved sulfate (IC)
+analysis,ZnD_ICP,dissolved zinc (ICP-OES)
+blank,FALSE,indicates sample is not a blank
+blank,TRUE,indicates sample is a blank

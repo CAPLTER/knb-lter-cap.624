@@ -1,0 +1,9 @@
+attributeName,formatString,unit,numberType,definition,attributeDefinition,columnClasses,minimum,maximum,missingValueCode,missingValueCodeExplanation
+runoff_location,,,,location short code,location short code,factor,,,,
+runoff_datetime,YYYY-MM-DD hh:mm:ss,,,,collection date and time,Date,,,,
+replicate,,number,natural,,sample replicate number,numeric,1,12,NA,missing value
+analysis,,,,,analyte quantified,factor,,,,
+concentration,,milligramsPerLiter,real,,concentration of analyte,numeric,-1.327,669,NA,missing value
+data_qualifier,,,,data qualifier flag,data qualifier flag,character,,,NA,missing value
+comments,,,,comments regarding sample,comments regarding sample,character,,,NA,missing value
+blank,,,,,boolean value indicating whether the sample is a blank,factor,,,,
