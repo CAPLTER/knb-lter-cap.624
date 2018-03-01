@@ -224,6 +224,111 @@ discharge_DT <- createDTFF(dfname = discharge,
 
 # particulates ------------------------------------------------------------
 
+particulates <- dbGetQuery(pg, "
+SELECT
+  s.bottle,
+  sites.abbreviation AS runoff_location,
+  s.sample_datetime AS runoff_datetime,
+  r.replicate AS replicate,
+  r.filter_initial AS filter_wt,
+  r.filter_dry AS filter_dry_wt,
+  r.volume_filtered AS vol_filtered,
+  r.filter_ashed AS filter_ash_wt,
+  r.data_qualifier AS data_qualifier,
+  r.comments AS comments
+FROM
+  stormwater.solids r
+  JOIN stormwater.samples s ON (s.sample_id = r.sample_id)
+  JOIN stormwater.sites ON (s.site_id = sites.site_id)
+  LEFT JOIN stormwater.data_qualifier dq ON (dq.data_qualifier_id = r.data_qualifier);")
+
+particulates <- particulates %>%
+  mutate(
+    blank = as.factor(ifelse(grepl('blk|blank', bottle, ignore.case = T), 'TRUE', 'FALSE')),
+    runoff_location = as.factor(runoff_location),
+    data_qualifier = as.character(data_qualifier)
+  ) %>%
+  select(-bottle)
+
+# writeAttributes(particulates) # write data frame attributes to a csv in current dir to edit metadata
+
+particulates_desc <- "mass of particulates in stormwater during runoff-generating storms at CAP LTER stormwater sampling sites"
+
+# particulates_factors <- factorsToFrame(particulates)
+
+# create data table based on metadata provided in the companion csv
+# use createdataTableFn() if attributes and classes are to be passed directly
+particulates_DT <- createDTFF(dfname = particulates,
+                              # factors = particulates_factors,
+                              description = particulates_desc,
+                              dateRangeField = 'runoff_datetime')
+
+
+
+# sample location ---------------------------------------------------------
+
+# NEED LAT LONGS for Price and Salt R. sites!
+
+sampling_location <- dbGetQuery(pg,"
+SELECT
+  abbreviation AS runoff_location,
+  site_name AS name,
+  latitude,
+  longitude
+FROM stormwater.sites;")
+
+sampling_location <- sampling_location %>%
+  mutate(
+    runoff_location = as.factor(runoff_location)
+  )
+
+# writeAttributes(sampling_location) # write data frame attributes to a csv in current dir to edit metadata
+
+sampling_location_desc <- "catalog of CAP LTER stormwater sampling locations"
+
+# sampling_location_factors <- factorsToFrame(sampling_location)
+
+# create data table based on metadata provided in the companion csv
+# use createdataTableFn() if attributes and classes are to be passed directly
+sampling_location_DT <- createDTFF(dfname = sampling_location,
+                                   # factors = sampling_location_factors,
+                                   description = sampling_location_desc)
+
+
+
+# analyses ----------------------------------------------------------------
+
+analytes <- dbGetQuery(pg,"
+SELECT
+  DISTINCT ON (analysis_name)
+  analysis_name as analysis,
+  analysis_description AS description,
+  units,
+  instrument
+FROM
+  stormwater.analysis
+  RIGHT JOIN stormwater.results r ON (r.analysis_id = analysis.analysis_id)
+WHERE analysis_name IS NOT NULL;")
+
+
+# writeAttributes(analytes) # write data frame attributes to a csv in current dir to edit metadata
+
+analytes_desc <- "catalog and details of water chemistry analytes measured as part of CAP LTER stormwater monitoring"
+
+# analytes_factors <- factorsToFrame(analytes)
+
+# create data table based on metadata provided in the companion csv
+# use createdataTableFn() if attributes and classes are to be passed directly
+analytes_DT <- createDTFF(dfname = analytes,
+                          # factors = analyses_factors,
+                          description = analytes_desc)
+
+
+
+# catchments --------------------------------------------------------------
+
+stormwater_catchments <- createKML(kmlobject = 'stormwater_catchments.kml',
+                                   description = "The location and configuration of watersheds that are or have been sampled as part of the CAP LTER's research on stormwater monitoring in the greater Phoenix metropolitan area. Catchments for sampling locations along the Salt River (centralNorth, centralSouth, Ave7th) and Price have not been delineated by the CAP LTER.")
 
 
 # data entity ----

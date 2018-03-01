@@ -1,0 +1,5 @@
+attributeName,formatString,unit,numberType,definition,attributeDefinition,columnClasses,minimum,maximum,missingValueCode,missingValueCodeExplanation
+runoff_location,,,,location short code,location short code,factor,,,,
+name,,,,name of sampling location,full name of sampling location,character,,,,
+latitude,,meter,real,,latitude of sampling location,numeric,33.374475552,33.6149155409,NA,missing value
+longitude,,meter,real,,longitude of sampling location,numeric,-111.938496501,-111.8654169206,NA,missing value
