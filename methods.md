@@ -1,0 +1,8 @@
+# sample collection and analysis
+
+Stormwater samples are collected from the field sampling location within 12 hours of a storm, and transported to CAP LTER laboratory facilities at Arizona State University (ASU) for processing and analysis. The suite of analytes and the instruments used to perform analyses have changed during the course of the monitoring. Analysis and instrument details are included in the analysis table that is available for download. In all cases, dissolved analytes reflect analysis following filtration through ashed (550 degree Celsius, ≥1 h) GF/F (0.7-µm pore size) filters. Similarly, particulates reflect analysis of materials retained (retentate) following filtration through GF/F filters. Holding times and preservation methods are in accordance with guidelines established by the APHA (1998). Identical methods are employed for the sampling and chemical analysis of rainfall samples, except that only a single, bulk sample of rainfall was collected for any given site/storm.
+
+# discharge
+
+Except at IBW where discharge is available from the USGS, water stage-height was measured with ISCO® 720 bubbler modules that were installed in concrete channels, box sections, or pipes to facilitate development of depth-discharge rating curves. Rating curves were developed using the Manning's Equation to calculate discharge (Q) from the flow-stage measurements. At some locations, irregularities in the ground-surface profile or aberrant water-height values resulted in unrealistic discharge estimates. Both the raw discharge values as calculated from water height and the Manning's Equation (discharge.discharge) and these corrected discharge estimates (discharge.discharge_edited) are included in the discharge table that is available for download.
+

@@ -1,0 +1,507 @@
+---
+title: "knb-lter-cap.624"
+author: "SRE"
+date: "March 13, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r libraries}
+library(EML)
+library(RPostgreSQL)
+library(RMySQL)
+library(tidyverse)
+library(tools)
+library(readxl)
+library(aws.s3)
+library(capeml)
+```
+
+```{r dataset_details}
+projectid <- 624
+packageIdent <- 'knb-lter-cap.624.2'
+pubDate <- '2018-03-15'
+```
+ 
+```{r helper_functions}
+source('~/localRepos/reml-helper-tools/writeAttributesFn.R')
+source('~/localRepos/reml-helper-tools/createDataTableFromFileFn.R')
+source('~/localRepos/reml-helper-tools/createKMLFn.R')
+source('~/localRepos/reml-helper-tools/address_publisher_contact_language_rights.R')
+source('~/localRepos/reml-helper-tools/createOtherEntityFn.R')
+source('~/localRepos/reml-helper-tools/createPeople.R')
+source('~/localRepos/reml-helper-tools/createFactorsDataframe.R')
+source('~/localRepos/reml-helper-tools/amazon_file_upload.R')
+```
+
+```{r connections::amazon}
+source('~/Documents/localSettings/aws.s3')
+```
+
+```{r connections::postgres::local, eval=FALSE}
+source('~/Documents/localSettings/pg_local.R')
+pg <- pg_local
+```
+
+```{r connections::postgres::prod, eval=FALSE}
+source('~/Documents/localSettings/pg_prod.R')
+pg <- pg_prod
+```
+
+```{r connections::mysql::prod, eval=FALSE}
+source('~/Documents/localSettings/mysql_prod.R')
+prod <- mysql_prod
+```
+
+
+```{r runoff_chemistry}
+
+# data from 2007 (single storm at IBW) omitted owing to lack of times 61 values
+# sans an analysis id are omitted
+
+runoffChemistry <- dbGetQuery(pg, "
+  SELECT
+    s.bottle,
+    sites.abbreviation AS runoff_location,
+    s.sample_datetime AS runoff_datetime,
+    r.replicate,
+    a.analysis_name AS analysis,
+    r.concentration,
+    dq.data_qualifier_label AS data_qualifier,
+    r.comments
+FROM
+  stormwater.results r
+  JOIN stormwater.samples s ON (s.sample_id = r.sample_id)
+  JOIN stormwater.analysis a ON (r.analysis_id = a.analysis_id)
+  JOIN stormwater.sites ON (s.site_id = sites.site_id)
+  LEFT JOIN stormwater.data_qualifier dq ON (dq.data_qualifier_id = r.data_qualifier)
+WHERE
+  EXTRACT (YEAR FROM s.sample_datetime) > 2007 AND
+  r.analysis_id IS NOT NULL AND
+  (bottle NOT ILIKE '%rain%' OR bottle IS NULL);")
+
+# need to add a definitive reference for whether a sample is a blank given that
+# bottle is omitted (and confusing)
+runoff_chemistry <- runoffChemistry %>%
+  mutate(
+    blank = as.factor(ifelse(grepl('blk|blank', bottle, ignore.case = T), 'TRUE', 'FALSE')),
+    runoff_location = as.factor(runoff_location),
+    analysis = as.factor(analysis)
+  ) %>%
+  select(-bottle)
+
+# writeAttributes(runoff_chemistry) # write data frame attributes to a csv in current dir to edit metadata
+
+runoff_chemistry_desc <- "stormwater runoff chemistry during runoff-generating storms at CAP LTER stormwater sampling sites"
+
+# runoff_chemistry_factors <- factorsToFrame(runoff_chemistry)
+
+# create data table based on metadata provided in the companion csv
+# use createdataTableFn() if attributes and classes are to be passed directly
+runoff_chemistry_DT <- createDTFF(dfname = runoff_chemistry,
+                                  # factors = runoff_chemistry_factors,
+                                  description = runoff_chemistry_desc,
+                                  dateRangeField = 'runoff_datetime')
+
+```
+
+```{r rainfall_chemistry}
+
+rainfallChemistry <- dbGetQuery(pg, "
+SELECT
+  sites.abbreviation AS rain_location,
+  s.sample_datetime AS rain_datetime,
+  r.replicate,
+  a.analysis_name AS analysis,
+  r.concentration,
+  dq.data_qualifier_label AS data_qualifier,
+  r.comments
+FROM
+  stormwater.results r
+  JOIN stormwater.samples s ON (s.sample_id = r.sample_id)
+  JOIN stormwater.analysis a ON (r.analysis_id = a.analysis_id)
+  JOIN stormwater.sites ON (s.site_id = sites.site_id)
+  LEFT JOIN stormwater.data_qualifier dq ON (dq.data_qualifier_id = r.data_qualifier)
+WHERE
+  EXTRACT (YEAR FROM s.sample_datetime) > 2007 AND
+  r.analysis_id IS NOT NULL AND
+  bottle ILIKE '%rain%'
+ORDER BY sites.abbreviation, s.sample_datetime, a.analysis_name;")
+
+rainfall_chemistry <- rainfallChemistry %>%
+  mutate(
+    rain_location = as.factor(rain_location),
+    analysis = as.factor(analysis),
+    rain_datetime = format(rain_datetime, format = "%Y-%m-%d")
+  )
+
+# writeAttributes(rainfall_chemistry) # write data frame attributes to a csv in current dir to edit metadata
+
+rainfall_chemistry_desc <- "water chemistry of collected rainfall at CAP LTER stormwater sampling sites"
+
+# rainfall_chemistry_factors <- factorsToFrame(rainfall_chemistry)
+
+# create data table based on metadata provided in the companion csv
+# use createdataTableFn() if attributes and classes are to be passed directly
+rainfall_chemistry_DT <- createDTFF(dfname = rainfall_chemistry,
+                                    # factors = rainfall_chemistry_factors,
+                                    description = rainfall_chemistry_desc,
+                                    dateRangeField = 'rain_datetime')
+
+```
+
+```{r rainfall}
+
+rainfall <- dbGetQuery(pg,"
+SELECT
+  sites.abbreviation AS rain_location,
+  r.event_datetime AS rain_datetime,
+  r.rainfall_quantity AS rain_quantity
+FROM
+  stormwater.rainfall r
+  JOIN stormwater.sites ON (r.site_id = sites.site_id);")
+
+rainfall <- rainfall %>%
+  mutate(
+    rain_location = as.factor(rain_location)
+  )
+
+# writeAttributes(rainfall) # write data frame attributes to a csv in current dir to edit metadata
+
+rainfall_desc <- "depth of precipitation as measured by tipping bucket rain gauge at CAP LTER stormwater sampling sites"
+
+# rainfall_factors <- factorsToFrame(rainfall)
+
+# create data table based on metadata provided in the companion csv
+# use createdataTableFn() if attributes and classes are to be passed directly
+rainfall_DT <- createDTFF(dfname = rainfall,
+                          # factors = rainfall_factors,
+                          description = rainfall_desc,
+                          dateRangeField = 'rain_datetime')
+```
+
+```{r discharge}
+
+discharge <- dbGetQuery(pg, "
+SELECT
+  sites.abbreviation AS discharge_location,
+  r.event_datetime AS discharge_datetime,
+  r.water_height AS water_height,
+  r.discharge AS raw_discharge,
+  r.discharge_corrected AS edited_discharge
+FROM
+  stormwater.discharge r
+  JOIN stormwater.sites ON (r.site_id = sites.site_id)
+;")
+
+discharge <- discharge %>%
+  mutate(
+    discharge_location = as.factor(discharge_location)
+  )
+
+# writeAttributes(discharge) # write data frame attributes to a csv in current dir to edit metadata
+
+discharge_desc <- "discharge at CAP LTER stormwater sampling sites"
+
+# discharge_factors <- factorsToFrame(discharge)
+
+# create data table based on metadata provided in the companion csv
+# use createdataTableFn() if attributes and classes are to be passed directly
+discharge_DT <- createDTFF(dfname = discharge,
+                           # factors = discharge_factors,
+                           description = discharge_desc,
+                           dateRangeField = 'discharge_datetime')
+```
+
+```{r particulates}
+
+particulates <- dbGetQuery(pg, "
+SELECT
+  s.bottle,
+  sites.abbreviation AS runoff_location,
+  s.sample_datetime AS runoff_datetime,
+  r.replicate AS replicate,
+  r.filter_initial AS filter_wt,
+  r.filter_dry AS filter_dry_wt,
+  r.volume_filtered AS vol_filtered,
+  r.filter_ashed AS filter_ash_wt,
+  r.data_qualifier AS data_qualifier,
+  r.comments AS comments
+FROM
+  stormwater.solids r
+  JOIN stormwater.samples s ON (s.sample_id = r.sample_id)
+  JOIN stormwater.sites ON (s.site_id = sites.site_id)
+  LEFT JOIN stormwater.data_qualifier dq ON (dq.data_qualifier_id = r.data_qualifier);")
+
+particulates <- particulates %>%
+  mutate(
+    blank = as.factor(ifelse(grepl('blk|blank', bottle, ignore.case = T), 'TRUE', 'FALSE')),
+    runoff_location = as.factor(runoff_location),
+    data_qualifier = as.character(data_qualifier)
+  ) %>%
+  select(-bottle)
+
+# writeAttributes(particulates) # write data frame attributes to a csv in current dir to edit metadata
+
+particulates_desc <- "mass of particulates in stormwater during runoff-generating storms at CAP LTER stormwater sampling sites"
+
+# particulates_factors <- factorsToFrame(particulates)
+
+# create data table based on metadata provided in the companion csv
+# use createdataTableFn() if attributes and classes are to be passed directly
+particulates_DT <- createDTFF(dfname = particulates,
+                              # factors = particulates_factors,
+                              description = particulates_desc,
+                              dateRangeField = 'runoff_datetime')
+
+```
+
+```{r sample_locations}
+
+sampling_location <- dbGetQuery(pg,"
+SELECT
+  abbreviation AS runoff_location,
+  site_name AS name,
+  latitude,
+  longitude
+FROM stormwater.sites;")
+
+sampling_location <- sampling_location %>%
+  mutate(
+    runoff_location = as.factor(runoff_location)
+  )
+
+# writeAttributes(sampling_location) # write data frame attributes to a csv in current dir to edit metadata
+
+sampling_location_desc <- "catalog of CAP LTER stormwater sampling locations"
+
+# sampling_location_factors <- factorsToFrame(sampling_location)
+
+# create data table based on metadata provided in the companion csv
+# use createdataTableFn() if attributes and classes are to be passed directly
+sampling_location_DT <- createDTFF(dfname = sampling_location,
+                                   # factors = sampling_location_factors,
+                                   description = sampling_location_desc)
+```
+
+```{r analyses}
+
+analytes <- dbGetQuery(pg,"
+SELECT
+  DISTINCT ON (analysis_name)
+  analysis_name as analysis,
+  analysis_description AS description,
+  units,
+  instrument
+FROM
+  stormwater.analysis
+  RIGHT JOIN stormwater.results r ON (r.analysis_id = analysis.analysis_id)
+WHERE analysis_name IS NOT NULL;")
+
+
+# writeAttributes(analytes) # write data frame attributes to a csv in current dir to edit metadata
+
+analytes_desc <- "catalog and details of water chemistry analytes measured as part of CAP LTER stormwater monitoring"
+
+# analytes_factors <- factorsToFrame(analytes)
+
+# create data table based on metadata provided in the companion csv
+# use createdataTableFn() if attributes and classes are to be passed directly
+analytes_DT <- createDTFF(dfname = analytes,
+                          # factors = analyses_factors,
+                          description = analytes_desc)
+```
+
+```{r catchments}
+
+stormwater_catchments <- createKML(kmlobject = 'stormwater_catchments.kml',
+                                   description = "The location and configuration of watersheds that are or have been sampled as part of the CAP LTER's research on stormwater monitoring in the greater Phoenix metropolitan area. Catchments for sampling locations along the Salt River (centralNorth, centralSouth, Ave7th) and Price have not been delineated by the CAP LTER.")
+
+```
+
+
+```{r}
+
+```
+
+
+```{r title}
+title <- 'Long-term monitoring of stormwater runoff and water quality in urbanized watersheds of the greater Phoenix metropolitan area, ongoing since 2008'
+```
+
+```{r abstract}
+
+# abstract from file or directly as text
+abstract <- as(set_TextType("abstract.md"), "abstract") 
+# abstract <- 'abstract text'
+```
+
+```{r people}
+
+# creators
+danChilders <- addCreator('d', 'childers')
+stevanEarl <- addCreator('s', 'earl')
+nancyGrimm <- addCreator('n', 'grimm')
+rebeccaHale <- addCreator('r', 'hale')
+lauraTurnbull <- addCreator('l', 'turnbull')
+
+creators <- c(as(danChilders, 'creator'),
+              as(stevanEarl, 'creator'),
+              as(nancyGrimm, 'creator'),
+              as(rebeccaHale, 'creator'),
+              as(lauraTurnbull, 'creator'))
+
+# metadata providers
+stevanEarl <- addMetadataProvider('s', 'earl')
+quincyStewart <- addMetadataProvider('q', 'stewart')
+sallyWittlinger <- addMetadataProvider('s', 'wittlinger')
+
+metadataProvider <-c(as(stevanEarl, 'metadataProvider'),
+                     as(quincyStewart, 'metadataProvider'),
+                     as(sallyWittlinger, 'metadataProvider'))
+
+```
+
+```{r keywords}
+
+# CAP IRTs for reference: https://sustainability.asu.edu/caplter/research/
+# be sure to include these as appropriate
+
+keywordSet <-
+  c(new("keywordSet",
+        keywordThesaurus = "LTER controlled vocabulary",
+        keyword =  c("nutrients",
+                     "dissolved organic carbon",
+                     "dissolved organic nitrogen",
+                     "dissolved inorganic nitrogen",
+                     "rivers",
+                     "discharge",
+                     "water chemistry",
+                     "particulates",
+                     "nitrate",
+                     "nitrite",
+                     "ammonium",
+                     "anions",
+                     "cations",
+                     "chloride",
+                     "phosphorus",
+                     "nitrogen",
+                     "specific conductivity",
+                     "urban",
+                     "runoff",
+                     "watersheds",
+                     "total dissolved nitrogen")),
+    new("keywordSet",
+        keywordThesaurus = "LTER core areas",
+        keyword =  c("water and fluxes",
+                     "parks and rivers",
+                     "movement of organic matter",
+                     "movement of inorganic matter")),
+    new("keywordset",
+        keywordThesaurus = "Creator Defined Keyword Set",
+        keyword =  c("stormwater",
+                     "catchment")),
+    new("keywordSet",
+        keywordThesaurus = "CAPLTER Keyword Set List",
+        keyword =  c("cap lter",
+                     "cap",
+                     "caplter",
+                     "central arizona phoenix long term ecological research",
+                     "arizona",
+                     "az",
+                     "indian bend wash",
+                     "salt river",
+                     "arid land"))
+  )
+
+```
+
+```{r methods}
+
+methods <- set_methods("methods_as_md_file.md")
+```
+
+```{r coverages}
+
+begindate <- min(runoff_chemistry$runoff_datetime)
+enddate <- max(runoff_chemistry$runoff_datetime)
+geographicDescription <- "CAP LTER study area"
+coverage <- set_coverage(begin = begindate,
+                         end = enddate,
+                         geographicDescription = geographicDescription,
+                         west = -112.082, east = -111.865,
+                         north = +33.6149, south = +33.3745)
+```
+
+```{r construct_dataset}
+
+# from sourced file:
+  # address
+  # publisher
+  # contact
+  # rights
+  # distribution
+
+# generate a list of EML dataTables
+listOfDataTables <- lapply(ls(pattern= "_DT"), function(DT) { get(DT) } )
+
+# print list as a safety step
+print(ls(pattern= "_DT"))
+
+# DATASET
+dataset <- new("dataset",
+               title = title,
+               creator = creators,
+               pubDate = pubDate,
+               metadataProvider = metadataProvider,
+               # associatedParty = associatedParty,
+               intellectualRights = rights,
+               abstract = abstract,
+               keywordSet = keywordSet,
+               coverage = coverage,
+               contact = contact,
+               methods = methods,
+               distribution = metadata_dist,
+               dataTable = listOfDataTables,
+               otherEntity = c(stormwater_catchments)) # if other entity is relevant
+
+               # dataTable = c(first_DT,
+               #               second_DT))
+
+```
+
+```{r custom_units, eval=FALSE}
+
+```
+
+```{r construct_eml}
+
+if(exists(custom_units)) {
+  eml <- new("eml",
+             schemaLocation = "eml://ecoinformatics.org/eml-2.1.1  http://nis.lternet.edu/schemas/EML/eml-2.1.1/eml.xsd",
+             packageId = packageIdent,
+             scope = "system",
+             system = "knb",
+             access = lter_access,
+             dataset = dataset,
+             additionalMetadata = as(unitList, "additionalMetadata"))
+} else {
+  eml <- new("eml",
+             schemaLocation = "eml://ecoinformatics.org/eml-2.1.1  http://nis.lternet.edu/schemas/EML/eml-2.1.1/eml.xsd",
+             packageId = packageIdent,
+             scope = "system",
+             system = "knb",
+             access = lter_access,
+             dataset = dataset)
+}
+
+```
+
+```{r write_eml}
+
+write_eml(eml, paste0(packageIdent, ".xml"))
+```
+
