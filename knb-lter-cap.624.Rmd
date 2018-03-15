@@ -5,6 +5,10 @@ date: "March 13, 2018"
 output: html_document
 ---
 
+This version 624.2 is a new workflow based on the Rmd format. There are new data available but, in the interest of time for the review, only data currently in the database at the time of construction are going into this version 2. More recent data and the discharge project stuff at the Salt River sites need to go into a version 3 soon.
+
+Note that this new workflow if pretty-much hit the button and everything should be built. Still not addressed at in this current configuration, however, are the keyword attributes, so those still have to be done by hand. Note also that the kml file is going to be overwritten every time.
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
@@ -23,7 +27,7 @@ library(capeml)
 ```{r dataset_details}
 projectid <- 624
 packageIdent <- 'knb-lter-cap.624.2'
-pubDate <- '2018-03-15'
+pubDate <- '2018-03-14'
 ```
  
 ```{r helper_functions}
@@ -46,16 +50,15 @@ source('~/Documents/localSettings/pg_local.R')
 pg <- pg_local
 ```
 
-```{r connections::postgres::prod, eval=FALSE}
+```{r connections::postgres::prod, eval=T }
 source('~/Documents/localSettings/pg_prod.R')
 pg <- pg_prod
 ```
 
-```{r connections::mysql::prod, eval=FALSE}
+```{r connections::mysql::prod, eval=T }
 source('~/Documents/localSettings/mysql_prod.R')
 prod <- mysql_prod
 ```
-
 
 ```{r runoff_chemistry}
 
@@ -322,12 +325,6 @@ stormwater_catchments <- createKML(kmlobject = 'stormwater_catchments.kml',
 
 ```
 
-
-```{r}
-
-```
-
-
 ```{r title}
 title <- 'Long-term monitoring of stormwater runoff and water quality in urbanized watersheds of the greater Phoenix metropolitan area, ongoing since 2008'
 ```
@@ -400,7 +397,7 @@ keywordSet <-
                      "parks and rivers",
                      "movement of organic matter",
                      "movement of inorganic matter")),
-    new("keywordset",
+    new("keywordSet",
         keywordThesaurus = "Creator Defined Keyword Set",
         keyword =  c("stormwater",
                      "catchment")),
@@ -421,13 +418,13 @@ keywordSet <-
 
 ```{r methods}
 
-methods <- set_methods("methods_as_md_file.md")
+methods <- set_methods("methods.md")
 ```
 
 ```{r coverages}
 
-begindate <- min(runoff_chemistry$runoff_datetime)
-enddate <- max(runoff_chemistry$runoff_datetime)
+begindate <- format(min(runoff_chemistry$runoff_datetime), "%Y-%m-%d")
+enddate <- format(max(runoff_chemistry$runoff_datetime), "%Y-%m-%d")
 geographicDescription <- "CAP LTER study area"
 coverage <- set_coverage(begin = begindate,
                          end = enddate,
@@ -446,7 +443,7 @@ coverage <- set_coverage(begin = begindate,
   # distribution
 
 # generate a list of EML dataTables
-listOfDataTables <- lapply(ls(pattern= "_DT"), function(DT) { get(DT) } )
+listOfDataTables <- lapply(ls(pattern = "_DT"), function(DT) { get(DT) } )
 
 # print list as a safety step
 print(ls(pattern= "_DT"))
@@ -479,7 +476,7 @@ dataset <- new("dataset",
 
 ```{r construct_eml}
 
-if(exists(custom_units)) {
+if(exists('unitList')) {
   eml <- new("eml",
              schemaLocation = "eml://ecoinformatics.org/eml-2.1.1  http://nis.lternet.edu/schemas/EML/eml-2.1.1/eml.xsd",
              packageId = packageIdent,
@@ -502,6 +499,39 @@ if(exists(custom_units)) {
 
 ```{r write_eml}
 
+# write the eml to file
 write_eml(eml, paste0(packageIdent, ".xml"))
+```
+
+```{r preview_data_file_to_upload}
+
+# preview data set files that will be uploaded to S3
+list.files(pattern = paste0(projectid, "_"))
+```
+
+```{r upload_data_S3}
+
+# upload files to S3
+lapply(list.files(pattern = paste0(projectid, "_")), dataToAmz)
+```
+
+```{r clean_up}
+
+# remove data files
+dataFilesToRemove <- dir(pattern = paste0(projectid, "_"))
+file.remove(dataFilesToRemove)
+
+# EML to S3
+if(length(list.files(pattern = "*.xml")) == 1) {
+  emlToAmz(list.files(pattern = "*.xml")) } else {
+    print("more than one xml file found")
+  }
+
+# EML to cap-data/cap-data-eml and remove file from project
+if(length(list.files(pattern = "*.xml")) == 1) {
+  file.copy(list.files(pattern = "*.xml"), "/home/srearl/localRepos/cap-data/cap-data-eml")
+  file.remove(list.files(pattern = "*.xml")) } else {
+    print("more than one xml file found")
+  }
 ```
 
