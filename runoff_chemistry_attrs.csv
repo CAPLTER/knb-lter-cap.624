@@ -1,9 +1,11 @@
-attributeName,formatString,unit,numberType,definition,attributeDefinition,columnClasses,minimum,maximum,missingValueCode,missingValueCodeExplanation
-runoff_location,,,,location short code,location short code,factor,,,,
-runoff_datetime,YYYY-MM-DD hh:mm:ss,,,,collection date and time,Date,,,,
-replicate,,number,natural,,sample replicate number,numeric,1,12,NA,missing value
-analysis,,,,,analyte quantified,factor,,,,
-concentration,,milligramsPerLiter,real,,concentration of analyte,numeric,-1.327,669,NA,missing value
-data_qualifier,,,,data qualifier flag,data qualifier flag,character,,,NA,missing value
-comments,,,,comments regarding sample,comments regarding sample,character,,,NA,missing value
-blank,,,,,boolean value indicating whether the sample is a blank,factor,,,,
+attributeName,formatString,unit,numberType,definition,attributeDefinition,columnClasses,minimum,maximum
+runoff_location,,,,sampling location identifier,sampling location identifier,factor,,
+runoff_datetime,YYYY-MM-DD hh:mm:ss,,,,date and time of sample collection,Date,,
+blank,,,,,boolean value indicating whether the sample is a blank,factor,,
+sample_comments,,,,technician comments pertaining to site conditions or sample details,technician comments pertaining to site conditions or sample details,character,,
+ph,,dimensionless,real,,pH of the sample,numeric,3.43,9.23
+replicate,,number,natural,,sample replicate number,numeric,1,12
+analysis_name,,,,,analysis type,factor,,
+analysis_concentration,,milligramPerLiter,real,,concentration of analyte,numeric,-1.92,672
+analysis_data_qualifier,,,,quality-control note pertaining to sample analysis,quality control flag pertaining to sample analysis,character,,
+analysis_comments,,,,technician comments pertaining to specific analysis,technician comments pertaining to specific analysis,character,,

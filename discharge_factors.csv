@@ -1,12 +1,12 @@
 attributeName,code,definition
 discharge_location,BV,Bella Vista
-discharge_location,centralNorth,central north
-discharge_location,centralSouth,central south
+runoff_location,centralNorth,Salt River at Central Avenue (north)
+runoff_location,centralSouth,Salt River at Central Avenue (south)
 discharge_location,ENC,Encantada
-discharge_location,KP,Kiwanis Park
-discharge_location,LM,Lake Marguerite
+runoff_location,KP,Kiwanis Park in Tempe AZ
+runoff_location,LM,Indian Bend Wash at Lake Marguerite
 discharge_location,MR,Martin Residence
 discharge_location,MS,Montessori
 discharge_location,PIE,Pierce
-discharge_location,SGC,Silverado Golf Course
+runoff_location,SGC,Indian Bend Wash at Silverado Golf Course
 discharge_location,SW,Sweetwater

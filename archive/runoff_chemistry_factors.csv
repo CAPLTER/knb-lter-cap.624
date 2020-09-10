@@ -30,7 +30,7 @@ analysis_name,NO3D_IC,dissolved nitrate-nitrogen (IC)
 analysis_name,NO3D_LACHAT,dissolved nitrate-nitrogen (Lachat)
 analysis_name,NO3T_AQ2,total nitrogen (AQ2)
 analysis_name,NO3T_TOC_TN,total nitrogen by combustion analysis TOC/TN
-analysis_name,NO3T_TRAACS,total dissolved nitrogen (TRAACS): NH4-N and NO3-N and DON are oxidized to NO3-N and measured together
+analysis_name,NO3T_TRAACS,"total dissolved nitrogen (TRAACS); NH4-N, NO3-N and DON are oxidized to NO3-N and measured together"
 analysis_name,PbD_ICP,dissolved lead (ICP-OES)
 analysis_name,PO4D_LACHAT,dissolved phosphorus (LACHAT)
 analysis_name,PO4T_AQ2,total phosphorus (AQ2)
