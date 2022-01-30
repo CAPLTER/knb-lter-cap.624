@@ -1,0 +1,21 @@
+|
+  analysis:
+    attributeName: analysis
+    attributeDefinition: 'analyte quantified'
+    columnClasses: character
+    definition: ''
+  description:
+    attributeName: description
+    attributeDefinition: 'analyte description'
+    columnClasses: character
+    definition: ''
+  units:
+    attributeName: units
+    attributeDefinition: 'unit of measure'
+    columnClasses: character
+    definition: ''
+  instrument:
+    attributeName: instrument
+    attributeDefinition: 'analytical instrument'
+    columnClasses: character
+    definition: ''

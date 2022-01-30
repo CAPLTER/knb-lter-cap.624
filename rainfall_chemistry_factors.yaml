@@ -1,0 +1,51 @@
+|
+  - attribute:
+      attributeName: rain_location
+      levels:
+      - code: BV
+        definition: 'Scottsdale Arizona: Bella Vista'
+      - code: CB
+        definition: 'Scottsdale Arizona: Indian Bend Wash at Camelback Road'
+      - code: ENC
+        definition: 'Scottsdale Arizona: Encantada'
+      - code: IBW
+        definition: 'Indian Bend Wash at Curry Road'
+      - code: KP
+        definition: 'Tempe Arizona: Kiwanis Park'
+      - code: LM
+        definition: 'Scottsdale Arizona: Indian Bend Wash at Lake Marguerite'
+      - code: MR
+        definition: 'Scottsdale Arizona: Martin Residence'
+      - code: MS
+        definition: 'Scottsdale Arizona: Montessori'
+      - code: PIE
+        definition: 'Scottsdale Arizona: Pierce Road'
+      - code: SGC
+        definition: 'Scottsdale Arizona: Indian Bend Wash at Silverado Golf Course'
+      - code: SW
+        definition: 'Scottsdale Arizona: Sweetwater'
+  - attribute:
+      attributeName: analysis
+      levels:
+      - code: CaD_ICP
+        definition: 'dissolved calcium (ICP)'
+      - code: ClD_LACHAT
+        definition: 'dissolved chloride (LACHAT)'
+      - code: DOC_TOC
+        definition: 'dissolved organic carbon'
+      - code: NaD_ICP
+        definition: 'dissolved sodium (ICP)'
+      - code: NH4_LACHAT
+        definition: 'ammonium-nitrogen (LACHAT)'
+      - code: NO3D_LACHAT
+        definition: 'dissolved nitrate-nitrogen (Lachat)'
+      - code: NO3T_TOC_TN
+        definition: 'total nitrogen by combustion analysis TOC/TN'
+      - code: NO3T_TRAACS
+        definition: 'total dissolved nitrogen (TRAACS): NH4-N and NO3-N and DON are oxidized to NO3-N and measured together'
+      - code: PO4D_LACHAT
+        definition: 'dissolved phosphorus (LACHAT)'
+      - code: PO4T_TRAACS
+        definition: 'total phosphorus (TRAACS)'
+      - code: ZnD_ICP
+        definition: 'dissolved zinc (ICP-OES)'

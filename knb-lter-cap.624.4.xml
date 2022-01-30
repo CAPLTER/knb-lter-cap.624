@@ -1,0 +1,1791 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" packageId="knb-lter-cap.624.4" scope="system" system="knb" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0 https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd">
+  <access authSystem="knb" order="allowFirst" scope="document">
+    <allow>
+      <principal>uid=CAP,o=EDI,dc=edirepository,dc=org</principal>
+      <permission>all</permission>
+    </allow>
+    <allow>
+      <principal>public</principal>
+      <permission>read</permission>
+    </allow>
+  </access>
+  <dataset>
+    <title>Long-term monitoring of stormwater runoff and water quality in urbanized watersheds of the greater Phoenix metropolitan area, ongoing since 2008</title>
+    <creator>
+      <individualName>
+        <givenName>Dan</givenName>
+        <surName>Childers</surName>
+      </individualName>
+      <organizationName>Arizona State University</organizationName>
+      <electronicMailAddress>dan.childers@asu.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">0000-0003-3904-0803</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Stevan</givenName>
+        <surName>Earl</surName>
+      </individualName>
+      <organizationName>Arizona State University</organizationName>
+      <electronicMailAddress>stevan.earl@asu.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">0000-0002-4465-452X</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Nancy</givenName>
+        <surName>Grimm</surName>
+      </individualName>
+      <organizationName>Arizona State University</organizationName>
+      <electronicMailAddress>nbgrimm@asu.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">0000-0001-9374-660X</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Rebecca</givenName>
+        <surName>Hale</surName>
+      </individualName>
+      <organizationName>Idaho State University</organizationName>
+      <electronicMailAddress>halereb3@isu.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">0000-0002-3552-3691</userId>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Laura</givenName>
+        <surName>Turnbull</surName>
+      </individualName>
+      <organizationName>Durham University, Science Laboratories</organizationName>
+      <electronicMailAddress>Laura.Turnbull@dur.ac.uk</electronicMailAddress>
+      <userId directory="https://orcid.org">0000-0002-3307-1214</userId>
+    </creator>
+    <metadataProvider>
+      <individualName>
+        <givenName>Stevan</givenName>
+        <surName>Earl</surName>
+      </individualName>
+      <organizationName>Arizona State University</organizationName>
+      <electronicMailAddress>stevan.earl@asu.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">0000-0002-4465-452X</userId>
+    </metadataProvider>
+    <metadataProvider>
+      <individualName>
+        <givenName>Quincy</givenName>
+        <surName>Stewart</surName>
+      </individualName>
+      <organizationName>Arizona State University</organizationName>
+      <electronicMailAddress>quincy.stewart@asu.edu</electronicMailAddress>
+    </metadataProvider>
+    <metadataProvider>
+      <individualName>
+        <givenName>Sally</givenName>
+        <surName>Wittlinger</surName>
+      </individualName>
+      <organizationName>Arizona State University</organizationName>
+      <electronicMailAddress>salwitt@asu.edu</electronicMailAddress>
+    </metadataProvider>
+    <pubDate>2022-01-28</pubDate>
+    <language>english</language>
+    <abstract>
+      <markdown>
+Urbanization dramatically alters watershed ecosystem processes. Land-use change and anthropogenic activities contribute to increased inputs of nutrients and other materials, while changes to land cover alter hydrology and the corresponding movement of materials. These changes have ramifications for both watershed processes and downstream systems. The impacts of urbanization on aquatic systems are well-studied, and frequently encapsulated in the ‘urban stream syndrome’ (Walsh et al. 2005) that describes, among others, increased nutrient loading and stream flashiness. However, there is some evidence that aridland cities behave differently (Grimm et al. 2004, 2005), and the complex dynamics among catchment characteristics, storm attributes, and runoff in highly urbanized settings of the Southwest remains poorly understood.
+
+To enhance our understanding of stormwater dynamics and watershed functioning in aridland, urban environments, the Central Arizona–Phoenix Long-Term Ecological Research (CAP LTER) program began monitoring stormwater runoff at the outflow of the Indian Bend Wash (IBW) in 2008. The IBW is a major drainage in the greater Phoenix metropolitan area, draining much of the City of Scottsdale, and a tributary to the Salt River. A model of soft engineering, the IBW as it runs through the City of Scottsdale is comprised largely of a series of artificial lakes, parks, paths, golf courses, ball fields and other non-structural elements designed with the dual roles of providing outdoor amenities to the City residents and as a floodplain. A unique biogeochemistry of this novel system is detailed by Roach et al. (2008), and Roach and Grimm (2011).
+
+Stormwater sampling is conducted near the outflow of the IBW ~0.6 km above its confluence with the Salt River. The sampling location coincides with a permanent USGS gauging station (USGS 09512162 INDIAN BEND WASH AT CURRY ROAD, TEMPE, AZ) that provides corresponding discharge data. Automated stormwater sampling equipment (ISCO® 6700 automated pump sampler) is used to collect discrete stormwater samples throughout the hydrograph of most runoff-generating storms.
+
+Data and expertise garnered by the stormwater monitoring near the outflow of the IBW helped pave the way for a more expansive stormwater research effort facilitated by a leveraged grant from the National Science Foundation (DEB-0918457, NSF Ecosystems, 2009-13). Through the Stormwater Nitrogen in Arizona (SNAZ) project, ten hierarchically nested urban stormwater catchments in Scottsdale and Tempe, AZ were instrumented with automated stormwater samplers (ISCO® 6700 automated pump samplers). A subset of those 11 locations were fitted with bubbler modules (ISCO® 720 bubbler modules) for quantifying water height (and subsequently discharge), and tipping-bucket rain gauges (ISCO® 674). The ten study catchments differed in type of stormwater infrastructure, spanning a continuum from highly engineered stormwater infrastructure in older residential areas to non-engineered washes in the desert, but not in land-use type (land use in all study catchments is predominantly residential). As per sampling near the outflow of the IBW, discrete stormwater samples were collected from most runoff-generating storms at the outflow of the 10 study catchments from the fall of 2010 through the summer 2012. Rainfall samples were collected at a subset of the locations during several storms to provide data that would contribute to an assessment of sources of materials in runoff. Results of this study are detailed by Hale et al. (2014a, 2014b). Sampling at most locations ceased at the end of the SNAZ award period, but the CAP LTER continues its long-term monitoring of runoff near the outflow of the IBW. Four new sites that drain into the Salt River were added in the winter of 2016. Three of the new sites are located near downtown Phoenix in the Rio Salado habitat restoration area, and the fourth catching runoff from numerous freeways and entering the Salt River channel above the Tempe Town Lake.
+
+Grimm N.B., Arrowsmith J.R., Eisinger C., Heffernan J., MacLeod A., Lewis D.B., et al. (2004) Effects of urbanization on nutrient biogeochemistry of aridland streams. In: Geophysical Monograph Series. (Eds R.S. DeFries, G.P. Asner and R.A. Houghton), pp. 129–146. American Geophysical Union, Washington, D. C.
+
+Grimm N.B., Sheibley R.W., Crenshaw C.L., Dahm C.N., Roach W.J. and Zeglin L.H. (2005) N retention and transformation in urban streams. Journal of the North American Benthological Society 24, 626–642.
+
+Hale R.L., Turnbull L., Earl S., Grimm N., Riha K., Michalski G., et al. (2014a) Sources and Transport of Nitrogen in Arid Urban Watersheds. Environmental Science &amp; Technology 48, 6211–6219.
+
+Hale R.L., Turnbull L., Earl S.R., Childers D.L. and Grimm N.B. (2014b) Stormwater Infrastructure Controls Runoff and Dissolved Material Export from Arid Urban Watersheds. Ecosystems 18, 62–75.
+
+Roach W.J. and Grimm N.B. (2011) Denitrification mitigates N flux through the stream–floodplain complex of a desert city. Ecological Applications 21, 2618–2636.
+
+Roach W.J., Heffernan J.B., Grimm N.B., Arrowsmith J.R., Eisinger C. and Rychener T. (2008) Unintended consequences of urbanization for aquatic ecosystems: a case study from the arizona desert. BioScience 58, 715–727.
+
+Walsh C.J., Roy A.H., Feminella J.W., Cottingham P.D., Groffman P.M. and Morgan II R.P. (2005) The urban stream syndrome: current knowledge and the search for a cure. Journal of the North American Benthological Society 24, 706–723.
+</markdown>
+    </abstract>
+    <keywordSet>
+      <keyword keywordType="theme">nutrients</keyword>
+      <keyword keywordType="theme">dissolved organic carbon</keyword>
+      <keyword keywordType="theme">dissolved organic nitrogen</keyword>
+      <keyword keywordType="theme">dissolved inorganic nitrogen</keyword>
+      <keyword keywordType="theme">rivers</keyword>
+      <keyword keywordType="theme">discharge</keyword>
+      <keyword keywordType="theme">water chemistry</keyword>
+      <keyword keywordType="theme">particulates</keyword>
+      <keyword keywordType="theme">nitrate</keyword>
+      <keyword keywordType="theme">nitrite</keyword>
+      <keyword keywordType="theme">ammonium</keyword>
+      <keyword keywordType="theme">anions</keyword>
+      <keyword keywordType="theme">cations</keyword>
+      <keyword keywordType="theme">chloride</keyword>
+      <keyword keywordType="theme">phosphorus</keyword>
+      <keyword keywordType="theme">nitrogen</keyword>
+      <keyword keywordType="theme">specific conductivity</keyword>
+      <keyword keywordType="theme">urban</keyword>
+      <keyword keywordType="theme">runoff</keyword>
+      <keyword keywordType="theme">watersheds</keyword>
+      <keyword keywordType="theme">total dissolved nitrogen</keyword>
+      <keywordThesaurus>LTER controlled vocabulary</keywordThesaurus>
+    </keywordSet>
+    <keywordSet>
+      <keyword keywordType="theme">water and fluxes</keyword>
+      <keyword keywordType="theme">parks and rivers</keyword>
+      <keyword keywordType="theme">movement of organic matter</keyword>
+      <keyword keywordType="theme">movement of inorganic matter</keyword>
+      <keywordThesaurus>LTER core areas</keywordThesaurus>
+    </keywordSet>
+    <keywordSet>
+      <keyword keywordType="theme">stormwater</keyword>
+      <keyword keywordType="theme">catchment</keyword>
+      <keywordThesaurus>Creator Defined Keyword Set</keywordThesaurus>
+    </keywordSet>
+    <keywordSet>
+      <keyword keywordType="theme">cap lter</keyword>
+      <keyword keywordType="theme">cap</keyword>
+      <keyword keywordType="theme">caplter</keyword>
+      <keyword keywordType="theme">central arizona phoenix long term ecological research</keyword>
+      <keyword keywordType="place">arizona</keyword>
+      <keyword keywordType="place">az</keyword>
+      <keyword keywordType="theme">arid land</keyword>
+      <keywordThesaurus>CAPLTER Keyword Set List</keywordThesaurus>
+    </keywordSet>
+    <intellectualRights>This data package is released to the "public domain" under Creative Commons CC0 1.0 "No Rights Reserved" (see: https://creativecommons.org/publicdomain/zero/1.0/). The consumer of these data ("Data User" herein) has an ethical obligation to cite it appropriately in any publication that results from its use. The Data User should realize that these data may be actively used by others for ongoing research and that coordination may be necessary to prevent duplicate publication. The Data User is urged to contact the authors of these data if any questions about methodology or results occur. Where appropriate, the Data User is encouraged to consider collaboration or coauthorship with the authors. The Data User should realize that misinterpretation of data may occur if used out of context of the original study. While substantial efforts are made to ensure the accuracy of data and associated documentation, complete accuracy of data sets cannot be guaranteed. All data are made available "as is". The Data User should be aware, however, that data are updated periodically and it is the responsibility of the Data User to check for new versions of the data. The data authors and the repository where these data were obtained shall not be liable for damages resulting from any use or misinterpretation of the data. Thank you.</intellectualRights>
+    <distribution>
+      <online>
+        <onlineDescription>CAPLTER Metadata URL</onlineDescription>
+        <url>https://sustainability.asu.edu/caplter/data/data-catalog/view/knb-lter-cap.624.4/xml/</url>
+      </online>
+    </distribution>
+    <coverage>
+      <geographicCoverage>
+        <geographicDescription>Indian Bend Wash watershed in Scottsdale, Arizona, USA and subcatchments of the Salt River in the Phoenix metropolitan Arizona, USA area</geographicDescription>
+        <boundingCoordinates>
+          <westBoundingCoordinate>-112.0824</westBoundingCoordinate>
+          <eastBoundingCoordinate>-111.8654</eastBoundingCoordinate>
+          <northBoundingCoordinate>33.6149</northBoundingCoordinate>
+          <southBoundingCoordinate>33.3745</southBoundingCoordinate>
+        </boundingCoordinates>
+      </geographicCoverage>
+      <temporalCoverage>
+        <rangeOfDates>
+          <beginDate>
+            <calendarDate>2008-01-29</calendarDate>
+          </beginDate>
+          <endDate>
+            <calendarDate>2021-09-26</calendarDate>
+          </endDate>
+        </rangeOfDates>
+      </temporalCoverage>
+    </coverage>
+    <maintenance>
+      <description>it is expected that dataset will receive regular updates (approximately annually or as needed)</description>
+      <maintenanceUpdateFrequency>asNeeded</maintenanceUpdateFrequency>
+    </maintenance>
+    <contact>
+      <organizationName>Central Arizona–Phoenix LTER</organizationName>
+      <positionName>Information Manager</positionName>
+      <address>
+        <deliveryPoint>Arizona State University</deliveryPoint>
+        <deliveryPoint>Global Institute of Sustainability and Innovation</deliveryPoint>
+        <city>Tempe</city>
+        <administrativeArea>AZ</administrativeArea>
+        <postalCode>85287-5402</postalCode>
+        <country>USA</country>
+      </address>
+      <electronicMailAddress>caplter.data@asu.edu</electronicMailAddress>
+      <onlineUrl>https://sustainability-innovation.asu.edu/caplter/</onlineUrl>
+    </contact>
+    <publisher>
+      <organizationName>Central Arizona–Phoenix LTER</organizationName>
+      <address>
+        <deliveryPoint>Arizona State University</deliveryPoint>
+        <deliveryPoint>Global Institute of Sustainability and Innovation</deliveryPoint>
+        <city>Tempe</city>
+        <administrativeArea>AZ</administrativeArea>
+        <postalCode>85287-5402</postalCode>
+        <country>USA</country>
+      </address>
+    </publisher>
+    <methods>
+      <methodStep>
+        <description>
+          <markdown>
+## sample collection and analysis
+
+Stormwater samples are collected from the field sampling location within 12 hours of a storm, and transported to CAP LTER laboratory facilities at Arizona State University (ASU) for processing and analysis. The suite of analytes and the instruments used to perform analyses have changed during the course of the monitoring. Analysis and instrument details are included in the analysis table that is available for download. In all cases, dissolved analytes reflect analysis following filtration through ashed (550 degree Celsius, ≥1 h) GF/F (0.7-µm pore size) filters. Similarly, particulates reflect analysis of materials retained (retentate) following filtration through GF/F filters. Holding times and preservation methods are in accordance with guidelines established by American Public Health Association (APHA. 1998. Standard Methods for the Examination of Water and Wastewater, 20th edn. APHA, NY). Identical methods are employed for the sampling and chemical analysis of rainfall samples, except that only a single, bulk sample of rainfall was collected for any given site/storm.
+
+## discharge
+
+Except at IBW where discharge is available from the USGS, water stage-height was measured with ISCO® 720 bubbler modules that were installed in concrete channels, box sections, or pipes to facilitate development of depth-discharge rating curves. Rating curves were developed using the Manning's Equation to calculate discharge (Q) from the flow-stage measurements. At some locations, irregularities in the ground-surface profile or aberrant water-height values resulted in unrealistic discharge estimates. Both the raw discharge values as calculated from water height and the Manning's Equation (discharge.discharge) and these corrected discharge estimates (discharge.discharge_edited) are included in the discharge table that is available for download.
+
+</markdown>
+        </description>
+      </methodStep>
+    </methods>
+    <project>
+      <title>Central Arizona–Phoenix Long-Term Ecological Research Project</title>
+      <personnel>
+        <individualName>
+          <givenName>Daniel</givenName>
+          <surName>Childers</surName>
+        </individualName>
+        <organizationName>Arizona State University</organizationName>
+        <electronicMailAddress>dan.childers@asu.edu</electronicMailAddress>
+        <userId directory="https://orcid.org">0000-0003-3904-0803</userId>
+        <role>Principal Investigator</role>
+      </personnel>
+      <personnel>
+        <individualName>
+          <givenName>Nancy</givenName>
+          <surName>Grimm</surName>
+        </individualName>
+        <organizationName>Arizona State University</organizationName>
+        <electronicMailAddress>nbgrimm@asu.edu</electronicMailAddress>
+        <userId directory="https://orcid.org">0000-0001-9374-660X</userId>
+        <role>Co-principal Investigator</role>
+      </personnel>
+      <personnel>
+        <individualName>
+          <givenName>Sharon</givenName>
+          <surName>Hall</surName>
+        </individualName>
+        <organizationName>Arizona State University</organizationName>
+        <electronicMailAddress>sharonjhall@asu.edu</electronicMailAddress>
+        <userId directory="https://orcid.org">0000-0002-8859-6691</userId>
+        <role>Co-principal Investigator</role>
+      </personnel>
+      <personnel>
+        <individualName>
+          <givenName>Billie</givenName>
+          <surName>Turner II</surName>
+        </individualName>
+        <organizationName>Arizona State University</organizationName>
+        <electronicMailAddress>Billie.L.Turner@asu.edu</electronicMailAddress>
+        <userId directory="https://orcid.org">0000-0002-6507-521X</userId>
+        <role>Co-principal Investigator</role>
+      </personnel>
+      <personnel>
+        <individualName>
+          <givenName>Abigail</givenName>
+          <surName>York</surName>
+        </individualName>
+        <organizationName>Arizona State University</organizationName>
+        <electronicMailAddress>Abigail.York@asu.edu</electronicMailAddress>
+        <userId directory="https://orcid.org">0000-0002-2313-9262</userId>
+        <role>Co-principal Investigator</role>
+      </personnel>
+      <abstract>Phase IV of the Central Arizona-Phoenix LTER (CAP) continues to focus on the question: How do the ecosystem services provided by urban ecological infrastructure (UEI) affect human outcomes and behavior, and how do human actions affect patterns of urban ecosystem structure and function and, ultimately, urban sustainability and resilience? The overarching goal is to foster social-ecological urban research aimed at understanding these complex systems using a holistic, ecology of cities perspective while contributing to an ecology for cities that enhances urban sustainability and resilience. This goal is being met through four broad programmatic objectives: (1) use long-term observations and datasets to articulate and answer new questions requiring a long-term perspective; (2) develop and use predictive models and future-looking scenarios to help answer research questions; (3) employ existing urban ecological theory while articulating new theory; and (4) build transdisciplinary partnerships to foster resilience and enhance sustainability in urban ecosystems while educating urban dwellers of all ages and experiences. CAP IV research is organized around eight interdisciplinary questions and ten long-term datasets and experiments, and researchers are organized into eight Interdisciplinary Research Themes to pursue these long-term research questions.</abstract>
+      <funding>NSF Awards: CAP I: DEB-9714833, CAP II: DEB-0423704, CAP III: DEB-1026865, CAP IV: DEB-1832016</funding>
+      <award>
+        <funderName>National Science Foundation</funderName>
+        <funderIdentifier>https://ror.org/021nxhr62</funderIdentifier>
+        <awardNumber>1832016</awardNumber>
+        <title>LTER: CAP IV - Investigating urban ecology and sustainability through the lens of Urban Ecological Infrastructure</title>
+        <awardUrl>https://nsf.gov/awardsearch/showAward?AWD_ID=1832016&amp;HistoricalAwards=false</awardUrl>
+      </award>
+    </project>
+    <dataTable id="624_analytes.csv">
+      <entityName>624_analytes.csv</entityName>
+      <entityDescription>catalog and details of water chemistry analytes measured as part of CAP LTER stormwater monitoring</entityDescription>
+      <physical>
+        <objectName>624_analytes.csv</objectName>
+        <size unit="bytes">1994</size>
+        <authentication method="MD5">04c4e211faef1dc9dbbf59297c34fb23</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>\r\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+              <quoteCharacter>"</quoteCharacter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url function="download">https://data.gios.asu.edu/datasets/cap/624_analytes.csv</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>analysis</attributeName>
+          <attributeDefinition>analyte quantified</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>analyte quantified</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>description</attributeName>
+          <attributeDefinition>analyte description</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>analyte description</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>units</attributeName>
+          <attributeDefinition>unit of measure</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>unit of measure</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>instrument</attributeName>
+          <attributeDefinition>analytical instrument</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>analytical instrument</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>22</numberOfRecords>
+    </dataTable>
+    <dataTable id="624_discharge.csv">
+      <entityName>624_discharge.csv</entityName>
+      <entityDescription>discharge at CAP LTER stormwater sampling sites</entityDescription>
+      <physical>
+        <objectName>624_discharge.csv</objectName>
+        <size unit="bytes">34533044</size>
+        <authentication method="MD5">8418a6d604e01cfec2df5039a5e987c6</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>\r\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+              <quoteCharacter>"</quoteCharacter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url function="download">https://data.gios.asu.edu/datasets/cap/624_discharge.csv</url>
+          </online>
+        </distribution>
+      </physical>
+      <coverage>
+        <temporalCoverage>
+          <rangeOfDates>
+            <beginDate>
+              <calendarDate>2010-08-04</calendarDate>
+            </beginDate>
+            <endDate>
+              <calendarDate>2021-12-10</calendarDate>
+            </endDate>
+          </rangeOfDates>
+        </temporalCoverage>
+      </coverage>
+      <attributeList>
+        <attribute>
+          <attributeName>discharge_location</attributeName>
+          <attributeDefinition>sampling location identifier</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>BV</code>
+                    <definition>Scottsdale Arizona: Bella Vista</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>centralNorth</code>
+                    <definition>Salt River: Central Avenue (north)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>centralSouth</code>
+                    <definition>Salt River: Central Avenue (south)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>ENC</code>
+                    <definition>Scottsdale Arizona: Encantada</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>KP</code>
+                    <definition>Tempe Arizona: Kiwanis Park </definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>LM</code>
+                    <definition>Scottsdale Arizona: Indian Bend Wash at Lake Marguerite</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>MR</code>
+                    <definition>Scottsdale Arizona: Martin Residence</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>MS</code>
+                    <definition>Scottsdale Arizona: Montessori</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>PIE</code>
+                    <definition>Scottsdale Arizona: Pierce Road</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>SGC</code>
+                    <definition>Scottsdale Arizona: Indian Bend Wash at Silverado Golf Course</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>SW</code>
+                    <definition>Scottsdale Arizona: Sweetwater</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>discharge_datetime</attributeName>
+          <attributeDefinition>measurement date and time</attributeDefinition>
+          <storageType>date</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>YYYY-MM-DD hh:mm:ss</formatString>
+              <dateTimeDomain/>
+            </dateTime>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>missing value</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>water_height</attributeName>
+          <attributeDefinition>water height above sensor</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>meter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">99.999</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>missing value</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>raw_discharge</attributeName>
+          <attributeDefinition>discharge (Q) estimated from Manning equation</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>literPerSecond</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">21704.24</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>missing value</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>edited_discharge</attributeName>
+          <attributeDefinition>corrections to raw_discharge</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>literPerSecond</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">-2.581</minimum>
+                  <maximum exclusive="false">21704.24</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>missing value</codeExplanation>
+          </missingValueCode>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>847439</numberOfRecords>
+    </dataTable>
+    <dataTable id="624_particulates.csv">
+      <entityName>624_particulates.csv</entityName>
+      <entityDescription>mass of particulates in stormwater during runoff-generating storms at CAP LTER stormwater sampling sites</entityDescription>
+      <physical>
+        <objectName>624_particulates.csv</objectName>
+        <size unit="bytes">369014</size>
+        <authentication method="MD5">721173c0702601789efaab4056d6cfe3</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>\r\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+              <quoteCharacter>"</quoteCharacter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url function="download">https://data.gios.asu.edu/datasets/cap/624_particulates.csv</url>
+          </online>
+        </distribution>
+      </physical>
+      <coverage>
+        <temporalCoverage>
+          <rangeOfDates>
+            <beginDate>
+              <calendarDate>2008-01-29</calendarDate>
+            </beginDate>
+            <endDate>
+              <calendarDate>2021-12-10</calendarDate>
+            </endDate>
+          </rangeOfDates>
+        </temporalCoverage>
+      </coverage>
+      <attributeList>
+        <attribute>
+          <attributeName>runoff_location</attributeName>
+          <attributeDefinition>sampling location identifier</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>Ave7th</code>
+                    <definition>Salt River: Seventh Avenue</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>BV</code>
+                    <definition>Scottsdale Arizona: Bella Vista</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>CB</code>
+                    <definition>Scottsdale Arizona: Indian Bend Wash at Camelback Road</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>centralNorth</code>
+                    <definition>Salt River: Central Avenue (north)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>centralSouth</code>
+                    <definition>Salt River: Central Avenue (south)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>ENC</code>
+                    <definition>Scottsdale Arizona: Encantada</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>IBW</code>
+                    <definition>Indian Bend Wash at Curry Road</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>KP</code>
+                    <definition>Tempe Arizona: Kiwanis Park </definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>LM</code>
+                    <definition>Scottsdale Arizona: Indian Bend Wash at Lake Marguerite</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>MR</code>
+                    <definition>Scottsdale Arizona: Martin Residence</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>MS</code>
+                    <definition>Scottsdale Arizona: Montessori</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>PIE</code>
+                    <definition>Scottsdale Arizona: Pierce Road</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Price</code>
+                    <definition>drain into the Salt River near Price Road</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>SGC</code>
+                    <definition>Scottsdale Arizona: Indian Bend Wash at Silverado Golf Course</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>SW</code>
+                    <definition>Scottsdale Arizona: Sweetwater</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>runoff_datetime</attributeName>
+          <attributeDefinition>collection date and time</attributeDefinition>
+          <storageType>date</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>YYYY-MM-DD hh:mm:ss</formatString>
+              <dateTimeDomain/>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>replicate</attributeName>
+          <attributeDefinition>sample replicate number</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>number</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>natural</numberType>
+                <bounds>
+                  <minimum exclusive="false">1</minimum>
+                  <maximum exclusive="false">3</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>filter_wt</attributeName>
+          <attributeDefinition>weight of clean and ashed filter</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>gram</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0.1171</minimum>
+                  <maximum exclusive="false">2.3128</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>missing value</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>filter_dry_wt</attributeName>
+          <attributeDefinition>dry filter weight</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>gram</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0.1195</minimum>
+                  <maximum exclusive="false">2.4809</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>missing value</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>vol_filtered</attributeName>
+          <attributeDefinition>volume of sample filtered</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>milliliter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0.53</minimum>
+                  <maximum exclusive="false">300</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>missing value</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>filter_ash_wt</attributeName>
+          <attributeDefinition>ashed weight of filter</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>gram</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0.1191</minimum>
+                  <maximum exclusive="false">2.4809</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>missing value</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>data_qualifier</attributeName>
+          <attributeDefinition>data qualifier flag</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>data qualifier flag</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>missing value</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>comments</attributeName>
+          <attributeDefinition>technician comments regarding analysis of that sample</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>technician comments regarding analysis of that sample</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>missing value</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>blank</attributeName>
+          <attributeDefinition>boolean value indicating whether the sample is a blank''</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>FALSE</code>
+                    <definition>indicates sample is NOT a field blank</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>TRUE</code>
+                    <definition>indicates sample IS a field blank</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>5324</numberOfRecords>
+    </dataTable>
+    <dataTable id="624_rainfall_chemistry.csv">
+      <entityName>624_rainfall_chemistry.csv</entityName>
+      <entityDescription>water chemistry of collected rainfall at CAP LTER stormwater sampling sites</entityDescription>
+      <physical>
+        <objectName>624_rainfall_chemistry.csv</objectName>
+        <size unit="bytes">42986</size>
+        <authentication method="MD5">9d84a10dc5d55a947c2ff5ff813e420c</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>\r\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+              <quoteCharacter>"</quoteCharacter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url function="download">https://data.gios.asu.edu/datasets/cap/624_rainfall_chemistry.csv</url>
+          </online>
+        </distribution>
+      </physical>
+      <coverage>
+        <temporalCoverage>
+          <rangeOfDates>
+            <beginDate>
+              <calendarDate>2010-09-22</calendarDate>
+            </beginDate>
+            <endDate>
+              <calendarDate>2012-07-30</calendarDate>
+            </endDate>
+          </rangeOfDates>
+        </temporalCoverage>
+      </coverage>
+      <attributeList>
+        <attribute>
+          <attributeName>rain_location</attributeName>
+          <attributeDefinition>sampling location identifier</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>BV</code>
+                    <definition>Scottsdale Arizona: Bella Vista</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>CB</code>
+                    <definition>Scottsdale Arizona: Indian Bend Wash at Camelback Road</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>ENC</code>
+                    <definition>Scottsdale Arizona: Encantada</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>IBW</code>
+                    <definition>Indian Bend Wash at Curry Road</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>KP</code>
+                    <definition>Tempe Arizona: Kiwanis Park</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>LM</code>
+                    <definition>Scottsdale Arizona: Indian Bend Wash at Lake Marguerite</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>MR</code>
+                    <definition>Scottsdale Arizona: Martin Residence</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>MS</code>
+                    <definition>Scottsdale Arizona: Montessori</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>PIE</code>
+                    <definition>Scottsdale Arizona: Pierce Road</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>SGC</code>
+                    <definition>Scottsdale Arizona: Indian Bend Wash at Silverado Golf Course</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>SW</code>
+                    <definition>Scottsdale Arizona: Sweetwater</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>rain_datetime</attributeName>
+          <attributeDefinition>collection date</attributeDefinition>
+          <storageType>date</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>YYYY-MM-DD</formatString>
+              <dateTimeDomain/>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>replicate</attributeName>
+          <attributeDefinition>sample replicate number</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>number</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>natural</numberType>
+                <bounds>
+                  <minimum exclusive="false">1</minimum>
+                  <maximum exclusive="false">2</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>analysis</attributeName>
+          <attributeDefinition>analyte quantified</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>CaD_ICP</code>
+                    <definition>dissolved calcium (ICP)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>ClD_LACHAT</code>
+                    <definition>dissolved chloride (LACHAT)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>DOC_TOC</code>
+                    <definition>dissolved organic carbon</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>NaD_ICP</code>
+                    <definition>dissolved sodium (ICP)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>NH4_LACHAT</code>
+                    <definition>ammonium-nitrogen (LACHAT)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>NO3D_LACHAT</code>
+                    <definition>dissolved nitrate-nitrogen (Lachat)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>NO3T_TOC_TN</code>
+                    <definition>total nitrogen by combustion analysis TOC/TN</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>NO3T_TRAACS</code>
+                    <definition>total dissolved nitrogen (TRAACS): NH4-N and NO3-N and DON are oxidized to NO3-N and measured together</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>PO4D_LACHAT</code>
+                    <definition>dissolved phosphorus (LACHAT)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>PO4T_TRAACS</code>
+                    <definition>total phosphorus (TRAACS)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>ZnD_ICP</code>
+                    <definition>dissolved zinc (ICP-OES)</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>concentration</attributeName>
+          <attributeDefinition>concentration of analyte</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>milligramPerLiter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">-0.0925</minimum>
+                  <maximum exclusive="false">43.14</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>data_qualifier</attributeName>
+          <attributeDefinition>data qualifier flag</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>data qualifier flag</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>missing value</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>comments</attributeName>
+          <attributeDefinition>comments regarding sample</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>comments regarding sample</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>missing value</codeExplanation>
+          </missingValueCode>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>424</numberOfRecords>
+    </dataTable>
+    <dataTable id="624_rainfall.csv">
+      <entityName>624_rainfall.csv</entityName>
+      <entityDescription>depth of precipitation as measured by tipping bucket rain gauge at CAP LTER stormwater sampling sites</entityDescription>
+      <physical>
+        <objectName>624_rainfall.csv</objectName>
+        <size unit="bytes">77870946</size>
+        <authentication method="MD5">ed7a47e1562b0521d3949a4b3233f8ff</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>\r\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+              <quoteCharacter>"</quoteCharacter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url function="download">https://data.gios.asu.edu/datasets/cap/624_rainfall.csv</url>
+          </online>
+        </distribution>
+      </physical>
+      <coverage>
+        <temporalCoverage>
+          <rangeOfDates>
+            <beginDate>
+              <calendarDate>2010-05-11</calendarDate>
+            </beginDate>
+            <endDate>
+              <calendarDate>2012-08-28</calendarDate>
+            </endDate>
+          </rangeOfDates>
+        </temporalCoverage>
+      </coverage>
+      <attributeList>
+        <attribute>
+          <attributeName>rain_location</attributeName>
+          <attributeDefinition>location identifier</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>BV</code>
+                    <definition>Scottsdale Arizona: Bella Vista</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>ENC</code>
+                    <definition>Scottsdale Arizona: Encantada</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>KP</code>
+                    <definition>Tempe Arizona: Kiwanis Park</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>MR</code>
+                    <definition>Scottsdale Arizona: Martin Residence</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>MS</code>
+                    <definition>Scottsdale Arizona: Montessori</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>SW</code>
+                    <definition>Scottsdale Arizona: Sweetwater</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>rain_datetime</attributeName>
+          <attributeDefinition>measurement date and time</attributeDefinition>
+          <storageType>date</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>YYYY-MM-DD hh:mm:ss</formatString>
+              <dateTimeDomain/>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>rain_quantity</attributeName>
+          <attributeDefinition>precipitation amount</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>millimeter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">4.064</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>2760631</numberOfRecords>
+    </dataTable>
+    <dataTable id="624_runoff_chemistry.csv">
+      <entityName>624_runoff_chemistry.csv</entityName>
+      <entityDescription>stormwater runoff chemistry during runoff-generating storms at CAP LTER stormwater sampling sites</entityDescription>
+      <physical>
+        <objectName>624_runoff_chemistry.csv</objectName>
+        <size unit="bytes">6652272</size>
+        <authentication method="MD5">c9b700c0bf4ea08eed89f96af4aa29d8</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>\r\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+              <quoteCharacter>"</quoteCharacter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url function="download">https://data.gios.asu.edu/datasets/cap/624_runoff_chemistry.csv</url>
+          </online>
+        </distribution>
+      </physical>
+      <coverage>
+        <temporalCoverage>
+          <rangeOfDates>
+            <beginDate>
+              <calendarDate>2008-01-29</calendarDate>
+            </beginDate>
+            <endDate>
+              <calendarDate>2021-09-26</calendarDate>
+            </endDate>
+          </rangeOfDates>
+        </temporalCoverage>
+      </coverage>
+      <attributeList>
+        <attribute>
+          <attributeName>runoff_location</attributeName>
+          <attributeDefinition>sampling location identifier</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>Ave7th</code>
+                    <definition>Salt River: Seventh Avenue</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>BV</code>
+                    <definition>Scottsdale Arizona: Bella Vista</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>CB</code>
+                    <definition>Scottsdale Arizona: Indian Bend Wash at Camelback Road</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>centralNorth</code>
+                    <definition>Salt River: Central Avenue (north)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>centralSouth</code>
+                    <definition>Salt River: Central Avenue (south)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>ENC</code>
+                    <definition>Scottsdale Arizona: Encantada</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>IBW</code>
+                    <definition>Indian Bend Wash at Curry Road</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>KP</code>
+                    <definition>Tempe Arizona: Kiwanis Park </definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>LM</code>
+                    <definition>Scottsdale Arizona: Indian Bend Wash at Lake Marguerite</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>MR</code>
+                    <definition>Scottsdale Arizona: Martin Residence</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>MS</code>
+                    <definition>Scottsdale Arizona: Montessori</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>PIE</code>
+                    <definition>Scottsdale Arizona: Pierce Road</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>Price</code>
+                    <definition>drain into the Salt River near Price Road</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>SGC</code>
+                    <definition>Scottsdale Arizona: Indian Bend Wash at Silverado Golf Course</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>SW</code>
+                    <definition>Scottsdale Arizona: Sweetwater</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>runoff_datetime</attributeName>
+          <attributeDefinition>date and time of sample collection</attributeDefinition>
+          <storageType>date</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>YYYY-MM-DD hh:mm:ss</formatString>
+              <dateTimeDomain/>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>blank</attributeName>
+          <attributeDefinition>boolean value indicating whether the sample is a blank</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>FALSE</code>
+                    <definition>indicates sample is NOT a field blank</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>TRUE</code>
+                    <definition>indicates sample IS a field blank</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>sample_comments</attributeName>
+          <attributeDefinition>technician comments pertaining to site conditions or sample details</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>technician comments pertaining to site conditions or sample details</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>missing value</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>ph</attributeName>
+          <attributeDefinition>pH of the sample</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0.0009</minimum>
+                  <maximum exclusive="false">20.6</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>missing value</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>replicate</attributeName>
+          <attributeDefinition>sample replicate number</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>number</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>natural</numberType>
+                <bounds>
+                  <minimum exclusive="false">1</minimum>
+                  <maximum exclusive="false">12</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>missing value</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>analysis_name</attributeName>
+          <attributeDefinition>analysis type</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>CaD_FLAME_AA</code>
+                    <definition>dissolved calcium (FLAME AA)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>CaD_ICP</code>
+                    <definition>dissolved calcium (ICP)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>ClD_LACHAT</code>
+                    <definition>dissolved chloride (LACHAT)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>DOC_TOC</code>
+                    <definition>dissolved organic carbon</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>KD_ICP</code>
+                    <definition>dissolved potassium (ICP)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>MgD_ICP</code>
+                    <definition>dissolved magnesium (ICP)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>NaD_ICP</code>
+                    <definition>dissolved sodium (ICP)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>NH4_LACHAT</code>
+                    <definition>ammonium-nitrogen (LACHAT)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>NiD_ICP</code>
+                    <definition>dissolved nickel (ICP-OES)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>NO2D_LACHAT</code>
+                    <definition>dissolved nitrite-nitrogen (LACHAT)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>NO3D_IC</code>
+                    <definition>dissolved nitrate-nitrogen (IC)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>NO3D_LACHAT</code>
+                    <definition>dissolved nitrate-nitrogen (Lachat)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>NO3T_AQ2</code>
+                    <definition>total nitrogen (AQ2)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>NO3T_TOC_TN</code>
+                    <definition>total nitrogen by combustion analysis TOC/TN</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>NO3T_TRAACS</code>
+                    <definition>total dissolved nitrogen (TRAACS): NH4-N and NO3-N and DON are oxidized to NO3-N and measured together</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>PbD_ICP</code>
+                    <definition>dissolved lead (ICP-OES)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>PO4D_LACHAT</code>
+                    <definition>dissolved phosphorus (LACHAT)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>PO4T_AQ2</code>
+                    <definition>total phosphorus (AQ2)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>PO4T_LACHAT</code>
+                    <definition>total phosphorus (LACHAT)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>PO4T_TRAACS</code>
+                    <definition>total phosphorus (TRAACS)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>SO4D_IC</code>
+                    <definition>dissolved sulfate (IC)</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>ZnD_ICP</code>
+                    <definition>dissolved zinc (ICP-OES)</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>analysis_concentration</attributeName>
+          <attributeDefinition>concentration of analyte</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>milligramPerLiter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">-38.6</minimum>
+                  <maximum exclusive="false">669</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>analysis_data_qualifier</attributeName>
+          <attributeDefinition>quality control flag pertaining to sample analysis</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>quality control flag pertaining to sample analysis</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>missing value</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>analysis_comments</attributeName>
+          <attributeDefinition>technician comments pertaining to specific analysis</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>technician comments pertaining to specific analysis</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>missing value</codeExplanation>
+          </missingValueCode>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>62733</numberOfRecords>
+    </dataTable>
+    <spatialVector id="624_indian_bend_wash_catchments.geojson">
+      <entityName>624_indian_bend_wash_catchments.geojson</entityName>
+      <entityDescription>The location and configuration of watersheds that are or have been sampled as part of the CAP LTER's research on stormwater monitoring in the greater Phoenix metropolitan area. Catchments for sampling locations along the Salt River (centralNorth, centralSouth, Ave7th) and Price have not been delineated by the CAP LTER.</entityDescription>
+      <physical>
+        <objectName>624_indian_bend_wash_catchments.geojson</objectName>
+        <size unit="byte">442000</size>
+        <authentication method="MD5">605492e3ab208c02e7a433daa3716017</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>GeoJSON</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://data.gios.asu.edu/datasets/cap/624_indian_bend_wash_catchments.geojson</url>
+          </online>
+        </distribution>
+      </physical>
+      <coverage>
+        <geographicCoverage>
+          <geographicDescription>Indian Bend Wash watershed in Scottsdale, Arizona, USA and subcatchments of the Salt River in the Phoenix metropolitan Arizona, USA area</geographicDescription>
+          <boundingCoordinates>
+            <westBoundingCoordinate>-112.044</westBoundingCoordinate>
+            <eastBoundingCoordinate>-111.8555</eastBoundingCoordinate>
+            <northBoundingCoordinate>33.6619</northBoundingCoordinate>
+            <southBoundingCoordinate>33.3638</southBoundingCoordinate>
+          </boundingCoordinates>
+        </geographicCoverage>
+      </coverage>
+      <attributeList>
+        <attribute>
+          <attributeName>catchment</attributeName>
+          <attributeDefinition>name of study catchment (corresponding to sampling location)</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>name of study catchment (corresponding to sampling location)</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+      <geometry>Polygon</geometry>
+      <geometricObjectCount>10</geometricObjectCount>
+      <spatialReference>
+        <horizCoordSysName>GCS_WGS_1984</horizCoordSysName>
+      </spatialReference>
+    </spatialVector>
+    <spatialVector id="624_sampling_location.geojson">
+      <entityName>624_sampling_location.geojson</entityName>
+      <entityDescription>CAP LTER stormwater sampling locations</entityDescription>
+      <physical>
+        <objectName>624_sampling_location.geojson</objectName>
+        <size unit="byte">3370</size>
+        <authentication method="MD5">9bfc39fecfb9cb353a619eaae5333648</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>GeoJSON</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://data.gios.asu.edu/datasets/cap/624_sampling_location.geojson</url>
+          </online>
+        </distribution>
+      </physical>
+      <coverage>
+        <geographicCoverage>
+          <geographicDescription>Indian Bend Wash watershed in Scottsdale, Arizona, USA and subcatchments of the Salt River in the Phoenix metropolitan Arizona, USA area</geographicDescription>
+          <boundingCoordinates>
+            <westBoundingCoordinate>-112.0824</westBoundingCoordinate>
+            <eastBoundingCoordinate>-111.8654</eastBoundingCoordinate>
+            <northBoundingCoordinate>33.6149</northBoundingCoordinate>
+            <southBoundingCoordinate>33.3745</southBoundingCoordinate>
+          </boundingCoordinates>
+        </geographicCoverage>
+      </coverage>
+      <attributeList>
+        <attribute>
+          <attributeName>location_identifier</attributeName>
+          <attributeDefinition>sampling location identifier</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>sampling location identifier</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>location_description</attributeName>
+          <attributeDefinition>description of sampling location</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>description of sampling location</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+      <geometry>Point</geometry>
+      <geometricObjectCount>15</geometricObjectCount>
+      <spatialReference>
+        <horizCoordSysName>GCS_WGS_1984</horizCoordSysName>
+      </spatialReference>
+    </spatialVector>
+    <literatureCited>
+      <citation>
+        <bibtex>@incollection{Grimm_2004,
+	doi = {10.1029/153gm11},
+	url = {https://doi.org/10.1029%2F153gm11},
+	year = 2004,
+	publisher = {American Geophysical Union},
+	pages = {129--146},
+	author = {Nancy B. Grimm and J. Ram{\'{o}}n Arrowsmith and Chris Eisinger and James Heffernan and Amanda MacLeod and David B. Lewis and Lela Prashad and Tyler Rychener and W. John Roach and Richard W. Sheibley},
+	title = {Effects of urbanization on nutrient biogeochemistry of aridland streams},
+	booktitle = {Ecosystems and Land Use Change}
+}</bibtex>
+      </citation>
+      <citation>
+        <bibtex>@article{Grimm_2005,
+	doi = {10.1899/04-027.1},
+	url = {https://doi.org/10.1899%2F04-027.1},
+	year = 2005,
+	month = {sep},
+	publisher = {University of Chicago Press},
+	volume = {24},
+	number = {3},
+	pages = {626--642},
+	author = {Nancy B. Grimm and Richard W. Sheibley and Chelsea L. Crenshaw and Clifford N. Dahm and W. John Roach and Lydia H. Zeglin},
+	title = {N retention and transformation in urban streams},
+	journal = {Journal of the North American Benthological Society}
+}</bibtex>
+      </citation>
+      <citation>
+        <bibtex>@article{Hale_2014,
+	doi = {10.1021/es501039t},
+	url = {https://doi.org/10.1021%2Fes501039t},
+	year = 2014,
+	month = {may},
+	publisher = {American Chemical Society ({ACS})},
+	volume = {48},
+	number = {11},
+	pages = {6211--6219},
+	author = {Rebecca L. Hale and Laura Turnbull and Stevan Earl and Nancy Grimm and Krystin Riha and Greg Michalski and Kathleen A. Lohse and Daniel Childers},
+	title = {Sources and Transport of Nitrogen in Arid Urban Watersheds},
+	journal = {Environmental Science {\&amp;} Technology}
+}</bibtex>
+      </citation>
+      <citation>
+        <bibtex>@article{Hale_2014,
+	doi = {10.1007/s10021-014-9812-2},
+	url = {https://doi.org/10.1007%2Fs10021-014-9812-2},
+	year = 2014,
+	month = {oct},
+	publisher = {Springer Science and Business Media {LLC}},
+	volume = {18},
+	number = {1},
+	pages = {62--75},
+	author = {Rebecca L. Hale and Laura Turnbull and Stevan R. Earl and Daniel L. Childers and Nancy B. Grimm},
+	title = {Stormwater Infrastructure Controls Runoff and Dissolved Material Export from Arid Urban Watersheds},
+	journal = {Ecosystems}
+}</bibtex>
+      </citation>
+      <citation>
+        <bibtex>@article{Roach_2011,
+	doi = {10.1890/10-1613.1},
+	url = {https://doi.org/10.1890%2F10-1613.1},
+	year = 2011,
+	month = {oct},
+	publisher = {Wiley},
+	volume = {21},
+	number = {7},
+	pages = {2618--2636},
+	author = {W. John Roach and Nancy B. Grimm},
+	title = {Denitrification mitigates N flux through the stream{\textendash}floodplain complex of a desert city},
+	journal = {Ecological Applications}
+}</bibtex>
+      </citation>
+      <citation>
+        <bibtex>@article{Roach_2008,
+	doi = {10.1641/b580808},
+	url = {https://doi.org/10.1641%2Fb580808},
+	year = 2008,
+	month = {sep},
+	publisher = {Oxford University Press ({OUP})},
+	volume = {58},
+	number = {8},
+	pages = {715--727},
+	author = {W. John Roach and James B. Heffernan and Nancy B. Grimm and J. Ram{\'{o}}n Arrowsmith and Chris Eisinger and Tyler Rychener},
+	title = {Unintended Consequences of Urbanization for Aquatic Ecosystems: A Case Study from the Arizona Desert},
+	journal = {{BioScience}}
+}</bibtex>
+      </citation>
+      <citation>
+        <bibtex>@article{Walsh_2005,
+	doi = {10.1899/04-028.1},
+	url = {https://doi.org/10.1899%2F04-028.1},
+	year = 2005,
+	month = {sep},
+	publisher = {University of Chicago Press},
+	volume = {24},
+	number = {3},
+	pages = {706--723},
+	author = {Christopher J. Walsh and Allison H. Roy and Jack W. Feminella and Peter D. Cottingham and Peter M. Groffman and Raymond P. Morgan},
+	title = {The urban stream syndrome: current knowledge and the search for a cure},
+	journal = {Journal of the North American Benthological Society}
+}</bibtex>
+      </citation>
+    </literatureCited>
+  </dataset>
+  <additionalMetadata>
+    <metadata>
+      <unitList>
+        <unit id="milligramPerKilogram" multiplierToSI="0.000001" name="milligramPerKilogram" parentSI="gramsPerGram" unitType="massPerMass">
+          <description>millgram of element per kilogram of material</description>
+        </unit>
+      </unitList>
+    </metadata>
+  </additionalMetadata>
+</eml:eml>

@@ -1,0 +1,22 @@
+{
+"type": "FeatureCollection",
+"name": "sampling_locationgeojson",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "location_identifier": "PIE", "location_description": "Pierce Road" }, "geometry": { "type": "Point", "coordinates": [ -111.911665043775002, 33.454637392646497 ] } },
+{ "type": "Feature", "properties": { "location_identifier": "MR", "location_description": "Martin Residence" }, "geometry": { "type": "Point", "coordinates": [ -111.865416920556001, 33.602030413300902 ] } },
+{ "type": "Feature", "properties": { "location_identifier": "SW", "location_description": "Sweetwater" }, "geometry": { "type": "Point", "coordinates": [ -111.873018989117995, 33.604397316372498 ] } },
+{ "type": "Feature", "properties": { "location_identifier": "BV", "location_description": "Bella Vista" }, "geometry": { "type": "Point", "coordinates": [ -111.878805126144002, 33.614915540949902 ] } },
+{ "type": "Feature", "properties": { "location_identifier": "IBW", "location_description": "Indian Bend Wash at Curry Road" }, "geometry": { "type": "Point", "coordinates": [ -111.915168003668995, 33.440742454525001 ] } },
+{ "type": "Feature", "properties": { "location_identifier": "ENC", "location_description": "Encantada" }, "geometry": { "type": "Point", "coordinates": [ -111.879803338553998, 33.608596683274897 ] } },
+{ "type": "Feature", "properties": { "location_identifier": "MS", "location_description": "Montessori" }, "geometry": { "type": "Point", "coordinates": [ -111.873858085647001, 33.600309313791598 ] } },
+{ "type": "Feature", "properties": { "location_identifier": "Ave7th", "location_description": "Salt River at Seventh Avenue" }, "geometry": { "type": "Point", "coordinates": [ -112.08244, 33.41941 ] } },
+{ "type": "Feature", "properties": { "location_identifier": "centralNorth", "location_description": "Salt River at Central Avenue (north)" }, "geometry": { "type": "Point", "coordinates": [ -112.07404, 33.42374 ] } },
+{ "type": "Feature", "properties": { "location_identifier": "centralSouth", "location_description": "Salt River at Central Avenue (south)" }, "geometry": { "type": "Point", "coordinates": [ -112.07379, 33.42126 ] } },
+{ "type": "Feature", "properties": { "location_identifier": "Price", "location_description": "drain into the Salt River near Price Road" }, "geometry": { "type": "Point", "coordinates": [ -111.89026, 33.4344 ] } },
+{ "type": "Feature", "properties": { "location_identifier": "CB", "location_description": "Indian Bend Wash at Camelback Road" }, "geometry": { "type": "Point", "coordinates": [ -111.907095226091002, 33.502001427012203 ] } },
+{ "type": "Feature", "properties": { "location_identifier": "SGC", "location_description": "Indian Bend Wash at Silverado Golf Course" }, "geometry": { "type": "Point", "coordinates": [ -111.912876540832002, 33.535299006165999 ] } },
+{ "type": "Feature", "properties": { "location_identifier": "LM", "location_description": "Indian Bend Wash at Lake Marguerite" }, "geometry": { "type": "Point", "coordinates": [ -111.899883491002001, 33.563875439977899 ] } },
+{ "type": "Feature", "properties": { "location_identifier": "KP", "location_description": "Kiwanis Park in Tempe AZ" }, "geometry": { "type": "Point", "coordinates": [ -111.938496500992002, 33.3744755520148 ] } }
+]
+}

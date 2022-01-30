@@ -1,0 +1,6 @@
+|
+  catchment:
+    attributeName: catchment
+    attributeDefinition: 'name of study catchment (corresponding to sampling location)'
+    columnClasses: character
+    definition: ''

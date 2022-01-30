@@ -1,0 +1,11 @@
+|
+  location_identifier:
+    attributeName: location_identifier
+    attributeDefinition: 'sampling location identifier'
+    columnClasses: character
+    definition: ''
+  location_description:
+    attributeName: location_description
+    attributeDefinition: 'description of sampling location'
+    columnClasses: character
+    definition: ''

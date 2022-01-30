@@ -1,0 +1,6 @@
+attributeName,formatString,unit,numberType,definition,attributeDefinition,columnClasses,minimum,maximum,missingValueCode,missingValueCodeExplanation
+discharge_location,,,,,sampling location identifier,factor,,,,
+discharge_datetime,YYYY-MM-DD hh:mm:ss,,,,measurement date and time,Date,,,,
+water_height,,meter,real,,water height above sensor,numeric,0,99.999,NA,missing value
+raw_discharge,,literPerSecond,real,,discharge (Q) estimated from Manning equation,numeric,0,21704.24,NA,missing value
+edited_discharge,,literPerSecond,real,,corrections to raw_discharge,numeric,-2.581,21704.24,NA,missing value

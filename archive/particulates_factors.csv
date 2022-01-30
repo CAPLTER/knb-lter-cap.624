@@ -1,0 +1,18 @@
+attributeName,code,definition
+runoff_location,Ave7th,Salt River at Seventh Avenue Avenue
+runoff_location,BV,Bella Vista
+runoff_location,CB,Indian Bend Wash at Camelback Road
+runoff_location,centralNorth,Salt River at Central Avenue (north)
+runoff_location,centralSouth,Salt River at Central Avenue (south)
+runoff_location,ENC,Encantada
+runoff_location,IBW,Indian Bend Wash at Curry Road
+runoff_location,KP,Kiwanis Park in Tempe AZ
+runoff_location,LM,Indian Bend Wash at Lake Marguerite
+runoff_location,MR,Martin Residence
+runoff_location,MS,Montessori
+runoff_location,PIE,Pierce Road
+runoff_location,Price,drain into the Salt River near Price Road
+runoff_location,SGC,Indian Bend Wash at Silverado Golf Course
+runoff_location,SW,Sweetwater
+blank,FALSE,indicates sample is not a blank
+blank,TRUE,indicates sample is a blank

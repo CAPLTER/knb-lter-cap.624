@@ -1,0 +1,57 @@
+|
+  runoff_location:
+    attributeName: runoff_location
+    attributeDefinition: 'sampling location identifier'
+    columnClasses: factor
+  runoff_datetime:
+    attributeName: runoff_datetime
+    attributeDefinition: 'date and time of sample collection'
+    columnClasses: Date
+    formatString: YYYY-MM-DD hh:mm:ss
+  blank:
+    attributeName: blank
+    attributeDefinition: 'boolean value indicating whether the sample is a blank'
+    columnClasses: factor
+  sample_comments:
+    attributeName: sample_comments
+    attributeDefinition: 'technician comments pertaining to site conditions or sample details'
+    columnClasses: character
+    definition: ''
+  ph:
+    attributeName: ph
+    attributeDefinition: 'pH of the sample'
+    unit: 'dimensionless'
+    numberType: real
+    minimum: 0.0009
+    maximum: 20.6
+    columnClasses: numeric
+  replicate:
+    attributeName: replicate
+    attributeDefinition: 'sample replicate number'
+    unit: 'number'
+    numberType: natural
+    minimum: 1
+    maximum: 12
+    columnClasses: numeric
+  analysis_name:
+    attributeName: analysis_name
+    attributeDefinition: 'analysis type'
+    columnClasses: factor
+  analysis_concentration:
+    attributeName: analysis_concentration
+    attributeDefinition: 'concentration of analyte'
+    unit: 'milligramPerLiter'
+    numberType: real
+    minimum: -38.6
+    maximum: 669.0
+    columnClasses: numeric
+  analysis_data_qualifier:
+    attributeName: analysis_data_qualifier
+    attributeDefinition: 'quality control flag pertaining to sample analysis'
+    columnClasses: character
+    definition: ''
+  analysis_comments:
+    attributeName: analysis_comments
+    attributeDefinition: 'technician comments pertaining to specific analysis'
+    columnClasses: character
+    definition: ''

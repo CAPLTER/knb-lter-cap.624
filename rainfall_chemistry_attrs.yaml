@@ -1,0 +1,40 @@
+|
+  rain_location:
+    attributeName: rain_location
+    attributeDefinition: 'sampling location identifier'
+    columnClasses: factor
+  rain_datetime:
+    attributeName: rain_datetime
+    attributeDefinition: 'collection date'
+    columnClasses: Date
+    formatString: YYYY-MM-DD
+  replicate:
+    attributeName: replicate
+    attributeDefinition: 'sample replicate number'
+    unit: 'number'
+    numberType: natural
+    minimum: 1
+    maximum: 2
+    columnClasses: numeric
+  analysis:
+    attributeName: analysis
+    attributeDefinition: 'analyte quantified'
+    columnClasses: factor
+  concentration:
+    attributeName: concentration
+    attributeDefinition: 'concentration of analyte'
+    unit: 'milligramPerLiter'
+    numberType: real
+    minimum: -0.0925
+    maximum: 43.14
+    columnClasses: numeric
+  data_qualifier:
+    attributeName: data_qualifier
+    attributeDefinition: 'data qualifier flag'
+    columnClasses: character
+    definition: ''
+  comments:
+    attributeName: comments
+    attributeDefinition: 'comments regarding sample'
+    columnClasses: character
+    definition: ''

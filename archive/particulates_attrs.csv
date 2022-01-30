@@ -1,0 +1,11 @@
+attributeName,formatString,unit,numberType,definition,attributeDefinition,columnClasses,minimum,maximum,missingValueCode,missingValueCodeExplanation
+runoff_location,,,,sampling location identifier,sampling location identifier,factor,,,,
+runoff_datetime,YYYY-MM-DD hh:mm:ss,,,,collection date and time,Date,,,,
+replicate,,number,natural,,sample replicate number,numeric,1,3,,
+filter_wt,,gram,real,,"weight of clean, ashed filter",numeric,0.1171,2.3128,NA,missing value
+filter_dry_wt,,gram,real,,dry filter weight,numeric,0.1195,2.4809,NA,missing value
+vol_filtered,,milliliter,real,,volume of sample filtered,numeric,0.53,300,NA,missing value
+filter_ash_wt,,gram,real,,ashed weight of filter,numeric,0.1191,2.4809,NA,missing value
+data_qualifier,,,,data qualifier flag,data qualifier flag,character,,,NA,missing value
+comments,,,,technician comments regarding analysis of that sample,technician comments regarding analysis of that sample,character,,,NA,missing value
+blank,,,,,boolean value indicating whether the sample is a blank,factor,,,,

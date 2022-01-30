@@ -1,0 +1,18 @@
+|
+  rain_location:
+    attributeName: rain_location
+    attributeDefinition: 'location identifier'
+    columnClasses: factor
+  rain_datetime:
+    attributeName: rain_datetime
+    attributeDefinition: 'measurement date and time'
+    columnClasses: Date
+    formatString: YYYY-MM-DD hh:mm:ss
+  rain_quantity:
+    attributeName: rain_quantity
+    attributeDefinition: 'precipitation amount'
+    unit: 'millimeter'
+    numberType: real
+    minimum: 0.0
+    maximum: 4.064
+    columnClasses: numeric

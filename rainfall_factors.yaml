@@ -1,0 +1,16 @@
+|
+  - attribute:
+      attributeName: rain_location
+      levels:
+      - code: BV
+        definition: 'Scottsdale Arizona: Bella Vista'
+      - code: ENC
+        definition: 'Scottsdale Arizona: Encantada'
+      - code: KP
+        definition: 'Tempe Arizona: Kiwanis Park'
+      - code: MR
+        definition: 'Scottsdale Arizona: Martin Residence'
+      - code: MS
+        definition: 'Scottsdale Arizona: Montessori'
+      - code: SW
+        definition: 'Scottsdale Arizona: Sweetwater'

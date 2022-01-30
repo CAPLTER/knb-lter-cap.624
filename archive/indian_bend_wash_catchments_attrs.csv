@@ -1,0 +1,2 @@
+attributeName,formatString,unit,numberType,definition,attributeDefinition,columnClasses,minimum,maximum
+Name,,,,name of catchment as it corresponds to name of sampling location at the outflow,name of catchment as it corresponds to name of sampling location at the outflow,character,,

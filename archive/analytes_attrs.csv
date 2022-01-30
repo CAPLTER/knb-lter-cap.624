@@ -1,0 +1,5 @@
+attributeName,formatString,unit,numberType,definition,attributeDefinition,columnClasses,minimum,maximum,missingValueCode,missingValueCodeExplanation
+analysis,,,,analyte quantified,analyte quantified,character,,,,
+description,,,,analyte description,analyte description,character,,,,
+units,,,,unit of measure,unit of measure,character,,,,
+instrument,,,,analytical instrument,analytical instrument,character,,,,

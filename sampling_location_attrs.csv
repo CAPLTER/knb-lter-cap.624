@@ -1,5 +1,0 @@
-"attributeName","formatString","unit","numberType","definition","attributeDefinition","columnClasses","minimum","maximum"
-"latitude",,degree,real,"",latitude of sampling location,"numeric","33.374476","33.614916"
-"longitude",,degree,real,"",longitude of sampling location,"numeric","-112.082440","-111.865417"
-"Name","","","",sampling location identifier,sampling location identifier,"character","",""
-"description","","","",sampling location description,sampling location description,"character","",""

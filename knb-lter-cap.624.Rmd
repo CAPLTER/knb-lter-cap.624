@@ -5,45 +5,19 @@ output: html_document
 
 # README
 
-## knb-lter-cap.624.3
+contents moved to README.md
 
-* workflow updated to capeml featuring config.yaml
-* pH included with runoff_chemistry; temperature not included owing to the
-  inherent meaningless of that measurement in this context; salinity and TDS
-  (meter) not included owing to very scant values for those measurements; pH
-  not recorded on rain samples
-* improved location description
-* locations from table to kml
-
-## knb-lter-cap.624.2
-
-This version 624.2 is a new workflow based on the Rmd format. There are new
-data available but, in the interest of time for the review, only data currently
-in the database at the time of construction are going into this version 2. More
-recent data and the discharge project stuff at the Salt River sites need to go
-into a version 3 soon.
-
-Note that this new workflow if pretty-much hit the button and everything should
-be built. Still not addressed at in this current configuration, however, are
-the keyword attributes, so those still have to be done by hand. Note also that
-the kml file is going to be overwritten every time.
-
-# libraries
-
-```{r libraries}
-library(EML)
-library(tidyverse)
-library(capeml)
-```
 
 # runoff chemistry
+
+## runoff chemistry: query
 
 - Data from 2007 include only a single storm at IBW; these are omitted owing to
   lack of collection times
 
-```{r runoff-chemistry}
+```{r runoff-chemistry-table}
 
-runoffChemistry <- dbGetQuery(pg, '
+runoff_chemistry <- DBI::dbGetQuery(pg, '
 SELECT
   s.bottle,
   sites.abbreviation AS runoff_location,
@@ -68,34 +42,45 @@ WHERE
 ;
 ')
 
-runoff_chemistry <- runoffChemistry %>%
-  mutate(
-    blank = as.factor(ifelse(grepl("blk|blank", bottle, ignore.case = T), "TRUE", "FALSE")),
-    runoff_location = as.factor(runoff_location),
-    analysis_name = as.factor(analysis_name)
-    ) %>%
-select(
-  runoff_location,
-  runoff_datetime,
-  blank,
-  everything(),
-  -bottle
-  ) %>%
-arrange(
-  runoff_location,
-  analysis_name,
-  runoff_datetime
-)
+dplyr::glimpse(runoff_chemistry)
 
-# write_attributes(runoff_chemistry)
-# write_factors(runoff_chemistry)
+runoff_chemistry <- runoff_chemistry |>
+  dplyr::mutate(
+    blank           = as.factor(ifelse(grepl("blk|blank", bottle, ignore.case = T), "TRUE", "FALSE")),
+    runoff_location = as.factor(runoff_location),
+    analysis_name   = as.factor(analysis_name)
+    ) |>
+  dplyr::select(
+    runoff_location,
+    runoff_datetime,
+    blank,
+    everything(),
+    -bottle
+    ) |>
+  dplyr::arrange(
+    runoff_location,
+    analysis_name,
+    runoff_datetime
+  )
+
+```
+
+## runoff chemistry: table
+
+```{r runoff-chemistry-table}
+
+try({
+  capeml::write_attributes(runoff_chemistry, overwrite = FALSE)
+  capeml::write_factors(runoff_chemistry, overwrite = FALSE)
+})
 
 runoff_chemistry_desc <- "stormwater runoff chemistry during runoff-generating storms at CAP LTER stormwater sampling sites"
 
-runoff_chemistry_DT <- create_dataTable(
-  dfname = runoff_chemistry,
-  description = runoff_chemistry_desc,
-  dateRangeField = "runoff_datetime"
+runoff_chemistry_DT <- capeml::create_dataTable(
+  dfname         = runoff_chemistry,
+  description    = runoff_chemistry_desc,
+  dateRangeField = "runoff_datetime",
+  overwrite      = TRUE
 )
 
 ```
@@ -104,7 +89,7 @@ runoff_chemistry_DT <- create_dataTable(
 
 ```{r rainfall-chemistry}
 
-rainfallChemistry <- dbGetQuery(pg, "
+rainfallChemistry <- DBI::dbGetQuery(pg, "
 SELECT
   sites.abbreviation AS rain_location,
   s.sample_datetime AS rain_datetime,
@@ -127,24 +112,29 @@ ORDER BY
   sites.abbreviation,
   s.sample_datetime,
   a.analysis_name
-;")
+;
+"
+)
 
-rainfall_chemistry <- rainfallChemistry %>%
-  mutate(
+rainfall_chemistry <- rainfallChemistry |>
+  dplyr::mutate(
     rain_location = as.factor(rain_location),
-    analysis = as.factor(analysis),
+    analysis      = as.factor(analysis),
     rain_datetime = as.Date(rain_datetime)
   )
 
-# write_attributes(rainfall_chemistry)
-# write_factors(rainfall_chemistry)
+try({
+  capeml::write_attributes(rainfall_chemistry, overwrite = FALSE)
+  capeml::write_factors(rainfall_chemistry, overwrite = FALSE)
+})
 
 rainfall_chemistry_desc <- "water chemistry of collected rainfall at CAP LTER stormwater sampling sites"
 
-rainfall_chemistry_DT <- create_dataTable(
-  dfname = rainfall_chemistry,
-  description = rainfall_chemistry_desc,
-  dateRangeField = "rain_datetime")
+rainfall_chemistry_DT <- capeml::create_dataTable(
+  dfname         = rainfall_chemistry,
+  description    = rainfall_chemistry_desc,
+  dateRangeField = "rain_datetime"
+)
 
 ```
 
@@ -152,26 +142,37 @@ rainfall_chemistry_DT <- create_dataTable(
 
 ```{r rainfall}
 
-rainfall <- dbGetQuery(pg, "
+rainfall <- DBI::dbGetQuery(pg, "
 SELECT
   sites.abbreviation AS rain_location,
   r.event_datetime AS rain_datetime,
   r.rainfall_quantity AS rain_quantity
 FROM
   stormwater.rainfall r
-  JOIN stormwater.sites ON (r.site_id = sites.site_id);")
+  JOIN stormwater.sites ON (r.site_id = sites.site_id)
+  ;
+  "
+)
 
-rainfall <- rainfall %>%
-  mutate(
-    rain_location = as.factor(rain_location)
-  )
+rainfall <- rainfall |>
+  dplyr::mutate(
+      rain_location = as.factor(rain_location)
+    )
+
+dplyr::glimpse(rainfall)
+
+try({
+  capeml::write_attributes(rainfall, overwrite = FALSE)
+  capeml::write_factors(rainfall, overwrite = FALSE)
+})
 
 rainfall_desc <- "depth of precipitation as measured by tipping bucket rain gauge at CAP LTER stormwater sampling sites"
 
-rainfall_DT <- create_dataTable(
-  dfname = rainfall,
-  description = rainfall_desc,
-  dateRangeField = "rain_datetime")
+rainfall_DT <- capeml::create_dataTable(
+  dfname         = rainfall,
+  description    = rainfall_desc,
+  dateRangeField = "rain_datetime"
+)
 
 ```
 
@@ -179,7 +180,7 @@ rainfall_DT <- create_dataTable(
 
 ```{r discharge}
 
-discharge <- dbGetQuery(pg, "
+discharge <- DBI::dbGetQuery(pg, "
 SELECT
   sites.abbreviation AS discharge_location,
   r.event_datetime AS discharge_datetime,
@@ -189,19 +190,28 @@ SELECT
 FROM
   stormwater.discharge r
   JOIN stormwater.sites ON (r.site_id = sites.site_id)
-;")
+;
+"
+)
 
-discharge <- discharge %>%
-  mutate(
+discharge <- discharge |>
+  dplyr::mutate(
     discharge_location = as.factor(discharge_location)
   )
 
+try({
+  capeml::write_attributes(discharge, overwrite = FALSE)
+  capeml::write_factors(discharge, overwrite = FALSE)
+})
+
+
 discharge_desc <- "discharge at CAP LTER stormwater sampling sites"
 
-discharge_DT <- create_dataTable(
-  dfname = discharge,
-  description = discharge_desc,
-  dateRangeField = "discharge_datetime")
+discharge_DT <- capeml::create_dataTable(
+  dfname         = discharge,
+  description    = discharge_desc,
+  dateRangeField = "discharge_datetime"
+)
 
 ```
 
@@ -209,7 +219,7 @@ discharge_DT <- create_dataTable(
 
 ```{r particulates}
 
-particulates <- dbGetQuery(pg, "
+particulates <- DBI::dbGetQuery(pg, "
 SELECT
   s.bottle,
   sites.abbreviation AS runoff_location,
@@ -225,22 +235,33 @@ FROM
   stormwater.solids r
   JOIN stormwater.samples s ON (s.sample_id = r.sample_id)
   JOIN stormwater.sites ON (s.site_id = sites.site_id)
-  LEFT JOIN stormwater.data_qualifier dq ON (dq.data_qualifier_id = r.data_qualifier);")
+  LEFT JOIN stormwater.data_qualifier dq ON (dq.data_qualifier_id = r.data_qualifier)
+  ;
+  "
+)
 
-particulates <- particulates %>%
-  mutate(
-    blank = as.factor(ifelse(grepl("blk|blank", bottle, ignore.case = T), "TRUE", "FALSE")),
+particulates <- particulates |>
+  dplyr::mutate(
+    blank           = as.factor(ifelse(grepl("blk|blank", bottle, ignore.case = T), "TRUE", "FALSE")),
     runoff_location = as.factor(runoff_location),
-    data_qualifier = as.character(data_qualifier)
-  ) %>%
-  select(-bottle)
+    data_qualifier  = as.character(data_qualifier)
+  ) |>
+  dplyr::select(-bottle)
+
+dplyr::glimpse(particulates)
+
+try({
+  capeml::write_attributes(particulates, overwrite = FALSE)
+  capeml::write_factors(particulates, overwrite = FALSE)
+})
 
 particulates_desc <- "mass of particulates in stormwater during runoff-generating storms at CAP LTER stormwater sampling sites"
 
-particulates_DT <- create_dataTable(
-  dfname = particulates,
-  description = particulates_desc,
-  dateRangeField = "runoff_datetime")
+particulates_DT <- capeml::create_dataTable(
+  dfname         = particulates,
+  description    = particulates_desc,
+  dateRangeField = "runoff_datetime"
+)
 
 ```
 
@@ -248,38 +269,31 @@ particulates_DT <- create_dataTable(
 
 ```{r sampling-location, eval=TRUE}
 
-library(sf)
-library(capemlGIS)
-
-sampling_location <- dbGetQuery(pg, "
+sampling_location <- DBI::dbGetQuery(pg, "
   SELECT
-  abbreviation AS location_identifier,
-  site_name AS location_description,
-  latitude,
-  longitude
+    abbreviation AS location_identifier,
+    site_name AS location_description,
+    latitude,
+    longitude
   FROM
-  stormwater.sites;") %>%
-  mutate(
-    Name = location_identifier,
-    description = location_description
-    ) %>%
-  select(
-    -location_identifier,
-    -location_description
-  )
-
-  # write_attributes(sampling_location)
-
-sampling_location <- sampling_location %>%
-  st_as_sf(
+  stormwater.sites
+  ;
+  ") |>
+  sf::st_as_sf(
     coords = c("longitude", "latitude"),
-    crs = 4326
+    crs    = 4326
   )
+
+dplyr::glimpse(sampling_location)
+
+try({
+  capeml::write_attributes(sampling_location, overwrite = FALSE)
+})
 
 sampling_location_desc <- "CAP LTER stormwater sampling locations"
 
-sampling_location_SV <- create_spatialVector(
-  svname = sampling_location,
+sampling_location_SV <- capemlGIS::create_vector(
+  vector_name = sampling_location,
   description = sampling_location_desc
 )
 
@@ -289,7 +303,7 @@ sampling_location_SV <- create_spatialVector(
 
 ```{r analyses}
 
-analytes <- dbGetQuery(pg,"
+analytes <- DBI::dbGetQuery(pg,"
 SELECT
   DISTINCT ON (analysis_name)
   analysis_name as analysis,
@@ -300,48 +314,51 @@ FROM
   stormwater.analysis
   RIGHT JOIN stormwater.results r ON (r.analysis_id = analysis.analysis_id)
 WHERE
-  analysis_name IS NOT NULL;")
+  analysis_name IS NOT NULL
+;
+")
+
+dplyr::glimpse(analytes)
+
+try({
+  capeml::write_attributes(analytes, overwrite = FALSE)
+})
 
 analytes_desc <- "catalog and details of water chemistry analytes measured as part of CAP LTER stormwater monitoring"
 
-analytes_DT <- create_dataTable(
-  dfname = analytes,
-  description = analytes_desc)
+analytes_DT <- capeml::create_dataTable(
+  dfname      = analytes,
+  description = analytes_desc
+)
 
 ```
 
 # indian_bend_wash_catchments
 
-Here we keep the source file (stormwater_catchments.kml) in the repository so
-that we can easily reconstruct indian_bend_wash_catchments when updating.
+Here we keep the source file (stormwater_catchments.geojson) in the repository
+so that we can easily reconstruct indian_bend_wash_catchments when updating.
 
 ```{r indian-bend-wash-catchments, eval=TRUE}
 
-library(sf)
-library(capemlGIS)
-
-# load spatial vector object
-indian_bend_wash_catchments <- read_sf(
-  here::here("stormwater_catchments.kml")
-)
-
-# the following are one-time operations and should not need to be repeated
-
-# drop geometry before writing attributes
-# indian_bend_wash_catchments <- indian_bend_wash_catchments %>%
-#   st_drop_geometry()
-
-# write_attributes(indian_bend_wash_catchments)
-
-# re-load spatial vector object
-# indian_bend_wash_catchments <- read_sf(
-#   here::here("stormwater_catchments.kml")
+# sf::st_write(
+#   obj        = indian_bend_wash_catchments,
+#   dsn        = "stormwater_catchments.geojson",
+#   driver     = "geojson",
+#   delete_dsn = TRUE
 # )
+
+indian_bend_wash_catchments <- sf::read_sf("stormwater_catchments.geojson")
+
+dplyr::glimpse(indian_bend_wash_catchments)
+
+try({
+  capeml::write_attributes(indian_bend_wash_catchments, overwrite = FALSE)
+})
 
 indian_bend_wash_catchments_desc <- "The location and configuration of watersheds that are or have been sampled as part of the CAP LTER's research on stormwater monitoring in the greater Phoenix metropolitan area. Catchments for sampling locations along the Salt River (centralNorth, centralSouth, Ave7th) and Price have not been delineated by the CAP LTER."
 
-indian_bend_wash_catchments_SV <- create_spatialVector(
-  svname = indian_bend_wash_catchments,
+indian_bend_wash_catchments_SV <- capemlGIS::create_vector(
+  vector_name = indian_bend_wash_catchments,
   description = indian_bend_wash_catchments_desc
 )
 
@@ -352,30 +369,37 @@ indian_bend_wash_catchments_SV <- create_spatialVector(
 
 ```{r people}
 
-library(gioseml)
-
 # creators
 
-dan <- create_role(
+dan <- gioseml::create_role(
   firstName = "dan",
-  lastName = "childers",
-  roleType = "creator")
-stevan <- create_role(
+  lastName  = "childers",
+  roleType  = "creator"
+)
+
+stevan <- gioseml::create_role(
   firstName = "ste",
-  lastName = "earl",
-  roleType = "creator")
-nancy <- create_role(
+  lastName  = "earl",
+  roleType  = "creator"
+)
+
+nancy <- gioseml::create_role(
   firstName = "nan",
-  lastName = "grimm",
-  roleType = "creator")
-rebecca <- create_role(
+  lastName  = "grimm",
+  roleType  = "creator"
+)
+
+rebecca <- gioseml::create_role(
   firstName = "rebe",
-  lastName = "hale",
-  roleType = "creator")
-laura <- create_role(
+  lastName  = "hale",
+  roleType  = "creator"
+)
+
+laura <- gioseml::create_role(
   firstName = "laura",
-  lastName = "turnb",
-  roleType = "creator")
+  lastName  = "turnb",
+  roleType  = "creator"
+)
 
 creators <- list(
   dan,
@@ -388,18 +412,23 @@ creators <- list(
 
 # metadata providers
 
-stevan <- create_role(
+stevan <- gioseml::create_role(
   firstName = "ste",
-  lastName = "earl",
-  roleType = "meta")
-quincy <- create_role(
+  lastName  = "earl",
+  roleType  = "meta"
+)
+
+quincy <- gioseml::create_role(
   firstName = "qui",
-  lastName = "stewar",
-  roleType = "meta")
-sally <- create_role(
+  lastName  = "stewar",
+  roleType  = "meta"
+)
+
+sally <- gioseml::create_role(
   firstName = "sally",
-  lastName = "wittlin",
-  roleType = "meta")
+  lastName  = "wittlin",
+  roleType  = "meta"
+)
 
 metadataProvider <- list(
   stevan,
@@ -414,67 +443,18 @@ metadataProvider <- list(
 ```{r coverages}
 
 begindate <- format(min(runoff_chemistry$runoff_datetime), "%Y-%m-%d")
-enddate <- format(max(runoff_chemistry$runoff_datetime), "%Y-%m-%d")
-geographicDescription <- "CAP LTER study area"
+enddate   <- format(max(runoff_chemistry$runoff_datetime), "%Y-%m-%d")
+geo_desc  <- yaml::yaml.load_file("config.yaml")$geographicCoverage$geographicDescription
 
-coverage <- set_coverage(
-  begin = begindate,
-  end = enddate,
-  geographicDescription = geographicDescription,
-  west = -112.082, east = -111.865,
-  north = +33.6149, south = +33.3745)
-
-```
-
-# dataset
-
-Optionally, provide: scope, abstract, methods, keywords, publication date.
-Projects scopes include lter (default), urex, ltreb, and som.
-
-```{r construct-dataset}
-
-dataset <- create_dataset()
-```
-
-# add dataTable
-
-```{r dataSet$dataTable}
-
-# add dataTables if relevant
-
-print(ls(pattern = "_DT"))
-
-if (length(ls(pattern = "_DT")) > 0) {
-
-  listOfDataTables <- lapply(ls(pattern = "_DT"), function(DT) { get(DT) } )
-
-  dataset$dataTable  <- listOfDataTables
-
-}
-
-# or add manually
-# dataset$dataTable <- list(dataTableOne, dataTableTwo)
-
-```
-
-# add spatialVector
-
-```{r dataSet$spatialVector}
-
-# add spatial vectors if relevant
-
-print(ls(pattern = "_SV"))
-
-if (length(ls(pattern = "_SV")) > 0) {
-
-  listOfSpatialVectors <- lapply(ls(pattern = "_SV"), function(SV) { get(SV) } )
-
-  dataset$spatialVector  <- listOfSpatialVectors
-
-}
-
-# or add manually
-# dataset$spatialVector <- list(spatialVectorOne, spatialVectorTwo)
+coverage <- EML::set_coverage(
+  begin                 = begindate,
+  end                   = enddate,
+  geographicDescription = geo_desc,
+  west                  = sf::st_bbox(sampling_location)[["xmin"]],
+  east                  = sf::st_bbox(sampling_location)[["xmax"]],
+  north                 = sf::st_bbox(sampling_location)[["ymax"]],
+  south                 = sf::st_bbox(sampling_location)[["ymin"]]
+)
 
 ```
 
@@ -482,13 +462,13 @@ if (length(ls(pattern = "_SV")) > 0) {
 
 ```{r literature-cited, eval=TRUE}
 
-grimm_2004 <- create_citation("https://doi.org/10.1029/153GM11")
-grimm_2005 <- create_citation("https://doi.org/10.1899/04-027.1")
-halea <- create_citation("https://doi.org/10.1021/es501039t")
-haleb <- create_citation("https://doi.org/10.1007/s10021-014-9812-2")
-roach_2011 <- create_citation("https://doi.org/10.1890/10-1613.1")
-roach_2008 <- create_citation("https://doi.org/10.1641/B580808")
-walsh <- create_citation("https://doi.org/10.1899/04-028.1")
+grimm_2004 <- capeml::create_citation("https://doi.org/10.1029/153GM11")
+grimm_2005 <- capeml::create_citation("https://doi.org/10.1899/04-027.1")
+halea      <- capeml::create_citation("https://doi.org/10.1021/es501039t")
+haleb      <- capeml::create_citation("https://doi.org/10.1007/s10021-014-9812-2")
+roach_2011 <- capeml::create_citation("https://doi.org/10.1890/10-1613.1")
+roach_2008 <- capeml::create_citation("https://doi.org/10.1641/B580808")
+walsh      <- capeml::create_citation("https://doi.org/10.1899/04-028.1")
 
 citations <- list(
   citation = list(
@@ -502,8 +482,6 @@ citations <- list(
   ) # close list of citations
 ) # close citation
 
-dataset$literatureCited <- citations
-
 ```
 
 # customUnits
@@ -512,35 +490,47 @@ dataset$literatureCited <- citations
 
 custom_units <- rbind(
   data.frame(
-    id = "milligramPerKilogram",
-    unitType = "massPerMass",
-    parentSI = "gramsPerGram",
+    id             = "milligramPerKilogram",
+    unitType       = "massPerMass",
+    parentSI       = "gramsPerGram",
     multiplierToSI = 0.000001,
-    description = "millgram of element per kilogram of material")
+    description    = "millgram of element per kilogram of material"
+  )
 )
 
-unitList <- set_unitList(
+unitList <- EML::set_unitList(
   custom_units,
-  as_metadata = TRUE)
+  as_metadata = TRUE
+)
 
+```
+
+# dataset
+
+Optionally, provide: scope, abstract, methods, keywords, publication date.
+Projects scopes include lter (default), urex, ltreb, and som.
+
+```{r construct-dataset}
+
+dataset <- capeml::create_dataset()
 ```
 
 # eml
 
 ```{r construct_eml, eval=TRUE}
 
-eml <- create_eml()
+eml <- capeml::create_eml()
 ```
 
 ```{r validate_eml, eval=TRUE}
 
-eml_validate(eml)
+EML::eml_validate(eml)
 ```
 
 ```{r eml_to_file, eval=TRUE}
 
 # write the eml to file
-write_cap_eml()
+capeml::write_cap_eml()
 ```
 
 # file placement
@@ -552,10 +542,10 @@ if (!file.exists("config.yaml")) {
   stop("config.yaml not found")
 }
 packageIdent <- yaml::yaml.load_file("config.yaml")$packageIdent
-packageNum <- yaml::yaml.load_file("config.yaml")$packageNum
+packageNum   <- yaml::yaml.load_file("config.yaml")$packageNum
 ```
 
-```{r preview_data_file_to_upload}
+```{r preview-data-file-to-upload}
 
 # preview data set files that will be uploaded to S3
 list.files(pattern = paste0(packageNum, "_"))
@@ -563,27 +553,101 @@ list.files(pattern = paste0(packageNum, "_"))
 
 Move data and final xml files to respective ASU locations.
 
-```{r S3_helper_functions}
+```{r S3-helper-functions}
+
 # functions and setting for uploading to S3
 library(aws.s3)
 source("~/Documents/localSettings/aws.s3")
 ```
 
-```{r upload_data_S3}
+```{r upload-data-S3}
 
 # upload files to S3
-lapply(list.files(pattern = paste0(packageNum, "_")), data_to_amz)
+lapply(list.files(pattern = paste0(packageNum, "_")), gioseml::data_to_amz)
 ```
 
-```{r clean_up}
+
+# EDI
+
+## EDI: login
+
+```{r edi-login, eval=TRUE, echo=TRUE, message=TRUE}
+
+EDIutils::login(
+  userId   = keyring::key_get("edi_user"),
+  userPass = keyring::key_get("edi_pass")
+)
+
+```
+
+## EDI: evaluate
+
+```{r edi-evaluate, eval=TRUE, echo=TRUE, message=TRUE}
+
+evaluation <- EDIutils::evaluate_data_package(
+  eml         = paste0(packageIdent, ".xml"),
+  useChecksum = FALSE,
+  env         = "staging"
+)
+
+Sys.sleep(8)
+
+eval_status <- EDIutils::check_status_evaluate(
+  transaction = evaluation,
+  env         = "staging"
+)
+
+if (eval_status) {
+
+  # evalution summary
+
+  EDIutils::read_evaluate_report_summary(
+    transaction = evaluation,
+    env         = "staging"
+  )
+
+}
+
+# evalution detailed
+
+# EDIutils::read_evaluate_report(
+#   transaction = evaluation,
+#   env         = "staging"
+# )
+
+```
+
+## EDI: update
+
+```{r edi-update, eval=TRUE, echo=TRUE, message=TRUE}
+
+EDIutils::update_data_package(
+  eml         = paste0(packageIdent, ".xml"),
+  env         = "production"
+)
+
+```
+
+## EDI: logout
+
+```{r edi-logout, eval=TRUE, echo=TRUE, message=TRUE}
+
+EDIutils::logout()
+
+```
+
+
+```{r clean-up}
 
 # remove data files
 dataFilesToRemove <- dir(pattern = paste0(packageNum, "_"))
 file.remove(dataFilesToRemove)
 
 # EML to S3
-eml_to_amz(list.files(pattern = "knb.+xml"))
+gioseml::eml_to_amz(list.files(pattern = "knb.+xml"))
 
 # EML to cap-data-eml and remove file from project
 file.copy(list.files(pattern = "knb.+xml"), "/home/srearl/localRepos/cap-metadata/cap-data-eml/")
 file.remove(list.files(pattern = "knb.+xml"))
+```
+

@@ -1,0 +1,8 @@
+attributeName,formatString,unit,numberType,definition,attributeDefinition,columnClasses,minimum,maximum,missingValueCode,missingValueCodeExplanation
+rain_location,,,,,sampling location identifier,factor,,,,
+rain_datetime,YYYY-MM-DD,,,,collection date,Date,,,,
+replicate,,number,natural,,sample replicate number,numeric,1,2,,
+analysis,,,,,analyte quantified,factor,,,,
+concentration,,milligramPerLiter,real,,concentration of analyte,numeric,-0.0925,43.14,,
+data_qualifier,,,,data qualifier flag,data qualifier flag,character,,,NA,missing value
+comments,,,,comments regarding sample,comments regarding sample,character,,,NA,missing value
