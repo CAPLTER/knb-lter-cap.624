@@ -1,0 +1,64 @@
+|
+  runoff_location:
+    attributeName: runoff_location
+    attributeDefinition: 'sampling location identifier'
+    columnClasses: factor
+  runoff_datetime:
+    attributeName: runoff_datetime
+    attributeDefinition: 'collection date and time'
+    columnClasses: Date
+    formatString: YYYY-MM-DD hh:mm:ss
+  replicate:
+    attributeName: replicate
+    attributeDefinition: 'sample replicate number'
+    unit: 'number'
+    numberType: natural
+    minimum: 1
+    maximum: 3
+    columnClasses: numeric
+  filter_wt:
+    attributeName: filter_wt
+    attributeDefinition: 'weight of clean and ashed filter'
+    unit: 'gram'
+    numberType: real
+    minimum: 0.1171
+    maximum: 2.3128
+    columnClasses: numeric
+  filter_dry_wt:
+    attributeName: filter_dry_wt
+    attributeDefinition: 'dry filter weight'
+    unit: 'gram'
+    numberType: real
+    minimum: 0.1195
+    maximum: 2.4809
+    columnClasses: numeric
+  vol_filtered:
+    attributeName: vol_filtered
+    attributeDefinition: 'volume of sample filtered'
+    unit: 'milliliter'
+    numberType: real
+    minimum: 0.53
+    maximum: 300.0
+    columnClasses: numeric
+  filter_ash_wt:
+    attributeName: filter_ash_wt
+    attributeDefinition: 'ashed weight of filter'
+    unit: 'gram'
+    numberType: real
+    minimum: 0.1191
+    maximum: 2.4809
+    columnClasses: numeric
+  data_qualifier:
+    attributeName: data_qualifier
+    attributeDefinition: 'data qualifier flag'
+    columnClasses: character
+    definition: ''
+  comments:
+    attributeName: comments
+    attributeDefinition: 'technician comments regarding analysis of that sample'
+    columnClasses: character
+    definition: ''
+  blank:
+    attributeName: blank
+    attributeDefinition: 'boolean value indicating whether the sample is a blank'
+    columnClasses: factor

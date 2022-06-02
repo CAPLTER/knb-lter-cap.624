@@ -1,0 +1,26 @@
+|
+  - attribute:
+      attributeName: discharge_location
+      levels:
+      - code: BV
+        definition: 'Scottsdale Arizona: Bella Vista'
+      - code: centralNorth
+        definition: 'Salt River: Central Avenue (north)'
+      - code: centralSouth
+        definition: 'Salt River: Central Avenue (south)'
+      - code: ENC
+        definition: 'Scottsdale Arizona: Encantada'
+      - code: KP
+        definition: 'Tempe Arizona: Kiwanis Park '
+      - code: LM
+        definition: 'Scottsdale Arizona: Indian Bend Wash at Lake Marguerite'
+      - code: MR
+        definition: 'Scottsdale Arizona: Martin Residence'
+      - code: MS
+        definition: 'Scottsdale Arizona: Montessori'
+      - code: PIE
+        definition: 'Scottsdale Arizona: Pierce Road'
+      - code: SGC
+        definition: 'Scottsdale Arizona: Indian Bend Wash at Silverado Golf Course'
+      - code: SW
+        definition: 'Scottsdale Arizona: Sweetwater'

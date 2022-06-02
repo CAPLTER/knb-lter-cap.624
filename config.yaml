@@ -1,8 +1,7 @@
-packageNum: 624
-packageIdent: knb-lter-cap.624.4
+scope: knb-lter-cap
+identifier: 624
 baseURL: https://data.gios.asu.edu/datasets/cap/
 project: lter
 title: 'Long-term monitoring of stormwater runoff and water quality in urbanized watersheds of the greater Phoenix metropolitan area, ongoing since 2008'
 maintenance: regular
-geographicCoverage:
-  geographicDescription: 'Indian Bend Wash watershed in Scottsdale, Arizona, USA and subcatchments of the Salt River in the Phoenix metropolitan Arizona, USA area'
+geographic_description: 'Indian Bend Wash watershed in Scottsdale, Arizona, USA and subcatchments of the Salt River in the Phoenix metropolitan Arizona, USA area'

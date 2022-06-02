@@ -1,5 +1,20 @@
 # knb-lter-cap.624: CAP LTER stormwater
 
+### knb-lter-cap.624.5 *2022-06-02*
+
+#### version 5 reflects a major update to this data package:
+
+* workflow updated to _revised_ capeml config.yaml style
+- data refresh
+- addresses a mistake with Lachat phosphorus data where data after 2019 were reported at ug/L whereas all data prior are reported as mg/L; in light of this error CAP will finally drop the conversion of phosphate as it comes off the Lachat in units of ug/L to mg/L and, instead, report all Lachat-derived phosphate values as ug/L
+- this update peels off data specific to the SNAZ project
+  - rainfall chem and amount data are removed completely as those measurements were exclusive to SNAZ
+  - runoff chemistry, particulates, discharge, sampling locations, and watershed polygons pared to non-SNAZ sites
+  - SNAZ data are reported in knb-lter-cap.702
+  - provenance to knb-lter-cap.702 included here (and, conversely, knb-lter-cap.624 referenced in knb-lter-cap.702)
+- runoff data lacking a datetime value are removed
+
+
 ### knb-lter-cap.624.4 *2022-01-29*
 
 - data refresh

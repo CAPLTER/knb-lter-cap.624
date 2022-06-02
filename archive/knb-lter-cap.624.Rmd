@@ -8,14 +8,6 @@ output: html_document
 contents moved to README.md
 
 
-# location helpers
-
-```{r SNAZ_sites, eval=TRUE, echo=TRUE, message=TRUE}
-
-snaz_sites <- c('KP', 'CB', 'PIE', 'MR', 'MS', 'SW', 'BV', 'ENC')
-salt_sites <- c('Ave7th', 'centralNorth', 'centralSouth', 'Price')
-```
-
 # runoff chemistry
 
 ## runoff chemistry: query
@@ -25,13 +17,13 @@ salt_sites <- c('Ave7th', 'centralNorth', 'centralSouth', 'Price')
 
 ```{r runoff-chemistry-table}
 
-runoff_chemistry_query <- glue::glue_sql("
+runoff_chemistry <- DBI::dbGetQuery(pg, '
 SELECT
   s.bottle,
   sites.abbreviation AS runoff_location,
   s.sample_datetime AS runoff_datetime,
   s.comments AS sample_comments,
-  s.\"lab_pH\" AS pH,
+  s."lab_pH" AS pH,
   r.replicate,
   a.analysis_name,
   r.concentration AS analysis_concentration,
@@ -46,14 +38,11 @@ FROM
 WHERE
   EXTRACT (YEAR FROM s.sample_datetime) > 2007 AND
   -- r.analysis_id IS NOT NULL AND
-  (bottle NOT ILIKE '%rain%' OR bottle IS NULL) AND
-  sites.abbreviation NOT IN ({snaz_sites*})
+  (bottle NOT ILIKE \'%rain%\' OR bottle IS NULL)
 ;
-",
-.con = DBI::ANSI()
-)
+')
 
-runoff_chemistry <- DBI::dbGetQuery(pg, runoff_chemistry_query)
+dplyr::glimpse(runoff_chemistry)
 
 runoff_chemistry <- runoff_chemistry |>
   dplyr::mutate(
@@ -96,77 +85,125 @@ runoff_chemistry_DT <- capeml::create_dataTable(
 
 ```
 
+# rainfall chemistry
 
-# discharge
+```{r rainfall-chemistry}
 
-## discharge: query, processing
-
-```{r discharge_query}
-
-core_q_query <- glue::glue_sql("
+rainfallChemistry <- DBI::dbGetQuery(pg, "
 SELECT
-  sites.abbreviation AS discharge_location,
-  r.event_datetime AS discharge_datetime,
-  r.water_height AS water_height,
-  r.discharge AS raw_discharge,
-  r.discharge_corrected AS edited_discharge
+  sites.abbreviation AS rain_location,
+  s.sample_datetime AS rain_datetime,
+  r.replicate,
+  a.analysis_name AS analysis,
+  r.concentration,
+  dq.data_qualifier_label AS data_qualifier,
+  r.comments
 FROM
-  stormwater.discharge r
-  JOIN stormwater.sites ON (r.site_id = sites.site_id)
+  stormwater.results r
+  JOIN stormwater.samples s ON (s.sample_id = r.sample_id)
+  JOIN stormwater.analysis a ON (r.analysis_id = a.analysis_id)
+  JOIN stormwater.sites ON (s.site_id = sites.site_id)
+  LEFT JOIN stormwater.data_qualifier dq ON (dq.data_qualifier_id = r.data_qualifier)
 WHERE
-  sites.abbreviation NOT IN ({snaz_sites*}) AND
-  r.event_datetime IS NOT NULL
+  EXTRACT (YEAR FROM s.sample_datetime) > 2007 AND
+  r.analysis_id IS NOT NULL AND
+  bottle ILIKE '%rain%'
+ORDER BY
+  sites.abbreviation,
+  s.sample_datetime,
+  a.analysis_name
 ;
-",
-.con = DBI::ANSI()
+"
 )
 
-core_q <- DBI::dbGetQuery(pg, core_q_query)
+rainfall_chemistry <- rainfallChemistry |>
+  dplyr::mutate(
+    rain_location = as.factor(rain_location),
+    analysis      = as.factor(analysis),
+    rain_datetime = as.Date(rain_datetime)
+  )
 
-lm_sgc_q_query <- glue::glue_sql("
-SELECT
-  sites.abbreviation AS discharge_location,
-  r.event_datetime AS discharge_datetime,
-  r.water_height AS water_height,
-  r.discharge AS raw_discharge,
-  r.discharge_corrected AS edited_discharge
-FROM
-  stormwater.discharge r
-  JOIN stormwater.sites ON (r.site_id = sites.site_id)
-WHERE
-  sites.abbreviation IN ('SGC', 'LM') AND
-  -- (r.discharge IS NOT NULL OR r.discharge_corrected IS NOT NULL)
-  r.event_datetime >= '2012-08-24' AND
-  r.event_datetime IS NOT NULL
-;
-",
-.con = DBI::ANSI()
-)
+try({
+  capeml::write_attributes(rainfall_chemistry, overwrite = FALSE)
+  capeml::write_factors(rainfall_chemistry, overwrite = FALSE)
+})
 
-lm_sgc_q <- DBI::dbGetQuery(pg, lm_sgc_q_query)
+rainfall_chemistry_desc <- "water chemistry of collected rainfall at CAP LTER stormwater sampling sites"
 
-discharge <- dplyr::bind_rows(
-  core_q,
-  lm_sgc_q
-  ) |>
-dplyr::arrange(
-  discharge_location,
-  discharge_datetime
-  ) |>
-dplyr::mutate(
-  discharge_location = as.factor(discharge_location)
+rainfall_chemistry_DT <- capeml::create_dataTable(
+  dfname         = rainfall_chemistry,
+  description    = rainfall_chemistry_desc,
+  dateRangeField = "rain_datetime"
 )
 
 ```
 
-## discharge: table
+# rainfail
 
-```{r discharge_table}
+```{r rainfall}
+
+rainfall <- DBI::dbGetQuery(pg, "
+SELECT
+  sites.abbreviation AS rain_location,
+  r.event_datetime AS rain_datetime,
+  r.rainfall_quantity AS rain_quantity
+FROM
+  stormwater.rainfall r
+  JOIN stormwater.sites ON (r.site_id = sites.site_id)
+  ;
+  "
+)
+
+rainfall <- rainfall |>
+  dplyr::mutate(
+      rain_location = as.factor(rain_location)
+    )
+
+dplyr::glimpse(rainfall)
+
+try({
+  capeml::write_attributes(rainfall, overwrite = FALSE)
+  capeml::write_factors(rainfall, overwrite = FALSE)
+})
+
+rainfall_desc <- "depth of precipitation as measured by tipping bucket rain gauge at CAP LTER stormwater sampling sites"
+
+rainfall_DT <- capeml::create_dataTable(
+  dfname         = rainfall,
+  description    = rainfall_desc,
+  dateRangeField = "rain_datetime"
+)
+
+```
+
+# discharge
+
+```{r discharge}
+
+discharge <- DBI::dbGetQuery(pg, "
+SELECT
+  sites.abbreviation AS discharge_location,
+  r.event_datetime AS discharge_datetime,
+  r.water_height AS water_height,
+  r.discharge AS raw_discharge,
+  r.discharge_corrected AS edited_discharge
+FROM
+  stormwater.discharge r
+  JOIN stormwater.sites ON (r.site_id = sites.site_id)
+;
+"
+)
+
+discharge <- discharge |>
+  dplyr::mutate(
+    discharge_location = as.factor(discharge_location)
+  )
 
 try({
   capeml::write_attributes(discharge, overwrite = FALSE)
   capeml::write_factors(discharge, overwrite = FALSE)
 })
+
 
 discharge_desc <- "discharge at CAP LTER stormwater sampling sites"
 
@@ -178,14 +215,11 @@ discharge_DT <- capeml::create_dataTable(
 
 ```
 
-
 # particulates
 
-## particulates: query, process
+```{r particulates}
 
-```{r particulates_process}
-
-particulates_query <- glue::glue_sql("
+particulates <- DBI::dbGetQuery(pg, "
 SELECT
   s.bottle,
   sites.abbreviation AS runoff_location,
@@ -202,14 +236,9 @@ FROM
   JOIN stormwater.samples s ON (s.sample_id = r.sample_id)
   JOIN stormwater.sites ON (s.site_id = sites.site_id)
   LEFT JOIN stormwater.data_qualifier dq ON (dq.data_qualifier_id = r.data_qualifier)
-WHERE
-  sites.abbreviation NOT IN ({snaz_sites*})
-;
-",
-.con = DBI::ANSI()
+  ;
+  "
 )
-
-particulates <- DBI::dbGetQuery(pg, particulates_query)
 
 particulates <- particulates |>
   dplyr::mutate(
@@ -219,11 +248,7 @@ particulates <- particulates |>
   ) |>
   dplyr::select(-bottle)
 
-```
-
-## particulates: table
-
-```{r particulates_table}
+dplyr::glimpse(particulates)
 
 try({
   capeml::write_attributes(particulates, overwrite = FALSE)
@@ -244,26 +269,22 @@ particulates_DT <- capeml::create_dataTable(
 
 ```{r sampling-location, eval=TRUE}
 
-sampling_location_query <- glue::glue_sql("
+sampling_location <- DBI::dbGetQuery(pg, "
   SELECT
     abbreviation AS location_identifier,
     site_name AS location_description,
     latitude,
     longitude
   FROM
-    stormwater.sites
-  WHERE
-    sites.abbreviation NOT IN ({snaz_sites*})
+  stormwater.sites
   ;
-  ",
-  .con = DBI::ANSI()
-)
-
-sampling_location <- DBI::dbGetQuery(pg, sampling_location_query) |>
+  ") |>
   sf::st_as_sf(
     coords = c("longitude", "latitude"),
     crs    = 4326
   )
+
+dplyr::glimpse(sampling_location)
 
 try({
   capeml::write_attributes(sampling_location, overwrite = FALSE)
@@ -297,6 +318,8 @@ WHERE
 ;
 ")
 
+dplyr::glimpse(analytes)
+
 try({
   capeml::write_attributes(analytes, overwrite = FALSE)
 })
@@ -324,9 +347,7 @@ so that we can easily reconstruct indian_bend_wash_catchments when updating.
 #   delete_dsn = TRUE
 # )
 
-# remove SNAZ sites
-indian_bend_wash_catchments <- sf::read_sf("stormwater_catchments.geojson") |>
-dplyr::filter(!grepl("bella|enc|kiw|martin|mont|pierce|sweet", catchment, ignore.case = TRUE))
+indian_bend_wash_catchments <- sf::read_sf("stormwater_catchments.geojson")
 
 dplyr::glimpse(indian_bend_wash_catchments)
 
@@ -334,28 +355,12 @@ try({
   capeml::write_attributes(indian_bend_wash_catchments, overwrite = FALSE)
 })
 
-indian_bend_wash_catchments_desc <- "The location and configuration of some watersheds in the Indian Bend Wash catchment that are or have been sampled as part of the CAP LTER's research on stormwater monitoring in the greater Phoenix metropolitan area. Catchments for sampling locations along the Salt River (centralNorth, centralSouth, Ave7th) and Price have not been delineated by the CAP LTER."
+indian_bend_wash_catchments_desc <- "The location and configuration of watersheds that are or have been sampled as part of the CAP LTER's research on stormwater monitoring in the greater Phoenix metropolitan area. Catchments for sampling locations along the Salt River (centralNorth, centralSouth, Ave7th) and Price have not been delineated by the CAP LTER."
 
 indian_bend_wash_catchments_SV <- capemlGIS::create_vector(
   vector_name = indian_bend_wash_catchments,
   description = indian_bend_wash_catchments_desc
 )
-
-```
-
-
-# methods
-
-```{r methods}
-
-main <- list(description = capeml::read_markdown("methods.md"))
-
-# provenance: long-term stormwater monitoring
-snaz            <- emld::as_emld(EDIutils::get_provenance_metadata("knb-lter-cap.702.2"))
-snaz$`@context` <- NULL
-snaz$`@type`    <- NULL
-
-enhancedMethods <- EML::eml$methods(methodStep = list(main, snaz))
 
 ```
 
@@ -439,7 +444,7 @@ metadataProvider <- list(
 
 begindate <- format(min(runoff_chemistry$runoff_datetime), "%Y-%m-%d")
 enddate   <- format(max(runoff_chemistry$runoff_datetime), "%Y-%m-%d")
-geo_desc  <- yaml::yaml.load_file("config.yaml")[["geographic_description"]]
+geo_desc  <- yaml::yaml.load_file("config.yaml")$geographicCoverage$geographicDescription
 
 coverage <- EML::set_coverage(
   begin                 = begindate,
@@ -480,9 +485,6 @@ citations <- list(
 ```
 
 # customUnits
-
-Note that eval is set to `FALSE`; this is intentional as this unit is not
-applied.
 
 ```{r custom-units, eval=FALSE}
 
@@ -539,14 +541,14 @@ capeml::write_cap_eml()
 if (!file.exists("config.yaml")) {
   stop("config.yaml not found")
 }
-package_id <- eml[["packageId"]]
-identifier <- yaml::yaml.load_file("config.yaml")$identifier
+packageIdent <- yaml::yaml.load_file("config.yaml")$packageIdent
+packageNum   <- yaml::yaml.load_file("config.yaml")$packageNum
 ```
 
 ```{r preview-data-file-to-upload}
 
 # preview data set files that will be uploaded to S3
-list.files(pattern = paste0(identifier, "_"))
+list.files(pattern = paste0(packageNum, "_"))
 ```
 
 Move data and final xml files to respective ASU locations.
@@ -561,7 +563,7 @@ source("~/Documents/localSettings/aws.s3")
 ```{r upload-data-S3}
 
 # upload files to S3
-lapply(list.files(pattern = paste0(identifier, "_")), gioseml::data_to_amz)
+lapply(list.files(pattern = paste0(packageNum, "_")), gioseml::data_to_amz)
 ```
 
 
@@ -583,7 +585,7 @@ EDIutils::login(
 ```{r edi-evaluate, eval=TRUE, echo=TRUE, message=TRUE}
 
 evaluation <- EDIutils::evaluate_data_package(
-  eml         = paste0(eml[["packageId"]], ".xml"),
+  eml         = paste0(packageIdent, ".xml"),
   useChecksum = FALSE,
   env         = "staging"
 )
@@ -597,7 +599,7 @@ eval_status <- EDIutils::check_status_evaluate(
 
 if (eval_status) {
 
-  # evaluation summary
+  # evalution summary
 
   EDIutils::read_evaluate_report_summary(
     transaction = evaluation,
@@ -620,8 +622,7 @@ if (eval_status) {
 ```{r edi-update, eval=TRUE, echo=TRUE, message=TRUE}
 
 EDIutils::update_data_package(
-  eml         = paste0(eml[["packageId"]], ".xml"),
-  useChecksum = TRUE,
+  eml         = paste0(packageIdent, ".xml"),
   env         = "production"
 )
 
@@ -639,7 +640,7 @@ EDIutils::logout()
 ```{r clean-up}
 
 # remove data files
-dataFilesToRemove <- dir(pattern = paste0(identifier, "_"))
+dataFilesToRemove <- dir(pattern = paste0(packageNum, "_"))
 file.remove(dataFilesToRemove)
 
 # EML to S3
@@ -649,3 +650,4 @@ gioseml::eml_to_amz(list.files(pattern = "knb.+xml"))
 file.copy(list.files(pattern = "knb.+xml"), "/home/srearl/localRepos/cap-metadata/cap-data-eml/")
 file.remove(list.files(pattern = "knb.+xml"))
 ```
+
