@@ -1,6 +1,6 @@
 scope: knb-lter-cap
 identifier: 624
-baseURL: https://data.gios.asu.edu/datasets/cap/
+baseURL: https://storage.googleapis.com/asuke-aws-gios-data/datasets/cap/
 project: lter
 title: 'Long-term monitoring of stormwater runoff and water quality in urbanized watersheds of the greater Phoenix metropolitan area, ongoing since 2008'
 maintenance: regular
