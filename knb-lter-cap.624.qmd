@@ -27,25 +27,25 @@ lack of collection times
 
 runoff_chemistry_query <- glue::glue_sql("
 SELECT
-  s.bottle,
+  samples.bottle,
   sites.abbreviation AS runoff_location,
-  s.sample_datetime AS runoff_datetime,
-  s.comments AS sample_comments,
-  s.\"lab_pH\" AS pH,
-  r.replicate,
-  a.analysis_name,
-  r.concentration AS analysis_concentration,
+  samples.sample_datetime AS runoff_datetime,
+  samples.comments AS sample_comments,
+  samples.\"lab_pH\" AS pH,
+  results.replicate,
+  analysis.analysis_name,
+  results.concentration AS analysis_concentration,
   dq.data_qualifier_label AS analysis_data_qualifier,
-  r.comments AS analysis_comments
+  results.comments AS analysis_comments
 FROM
-  stormwater.samples s
-  LEFT JOIN stormwater.results r ON (r.sample_id = s.sample_id)
-  JOIN stormwater.analysis a ON (r.analysis_id = a.analysis_id)
-  JOIN stormwater.sites ON (s.site_id = sites.site_id)
-  LEFT JOIN stormwater.data_qualifier dq ON (dq.data_qualifier_id = r.data_qualifier)
+  stormwater.samples
+  LEFT JOIN stormwater.results ON (results.sample_id = samples.sample_id)
+  JOIN stormwater.analysis ON (results.analysis_id = analysis.analysis_id)
+  JOIN stormwater.sites ON (samples.site_id = sites.site_id)
+  LEFT JOIN stormwater.data_qualifier dq ON (dq.data_qualifier_id = results.data_qualifier)
 WHERE
-  EXTRACT (YEAR FROM s.sample_datetime) > 2007 AND
-  -- r.analysis_id IS NOT NULL AND
+  EXTRACT (YEAR FROM samples.sample_datetime) > 2007 AND
+  -- results.analysis_id IS NOT NULL AND
   (bottle NOT ILIKE '%rain%' OR bottle IS NULL) AND
   sites.abbreviation NOT IN ({snaz_sites*})
 ;
@@ -59,7 +59,8 @@ runoff_chemistry <- runoff_chemistry |>
   dplyr::mutate(
     blank           = as.factor(ifelse(grepl("blk|blank", bottle, ignore.case = T), "TRUE", "FALSE")),
     runoff_location = as.factor(runoff_location),
-    analysis_name   = as.factor(analysis_name)
+    analysis_name   = as.factor(analysis_name),
+    replicate       = as.character(replicate)
     ) |>
   dplyr::select(
     runoff_location,
@@ -79,15 +80,6 @@ try({
   capeml::write_factors(runoff_chemistry, overwrite = FALSE)
 })
 
-runoff_chemistry_desc <- "stormwater runoff chemistry during runoff-generating storms at CAP LTER stormwater sampling sites"
-
-runoff_chemistry_DT <- capeml::create_dataTable(
-  dfname         = runoff_chemistry,
-  description    = runoff_chemistry_desc,
-  dateRangeField = "runoff_datetime",
-  overwrite      = TRUE
-)
-
 ```
 
 
@@ -100,16 +92,16 @@ runoff_chemistry_DT <- capeml::create_dataTable(
 core_q_query <- glue::glue_sql("
 SELECT
   sites.abbreviation AS discharge_location,
-  r.event_datetime AS discharge_datetime,
-  r.water_height AS water_height,
-  r.discharge AS raw_discharge,
-  r.discharge_corrected AS edited_discharge
+  discharge.event_datetime AS discharge_datetime,
+  discharge.water_height AS water_height,
+  discharge.discharge AS raw_discharge,
+  discharge.discharge_corrected AS edited_discharge
 FROM
-  stormwater.discharge r
-  JOIN stormwater.sites ON (r.site_id = sites.site_id)
+  stormwater.discharge
+  JOIN stormwater.sites ON (discharge.site_id = sites.site_id)
 WHERE
   sites.abbreviation NOT IN ({snaz_sites*}) AND
-  r.event_datetime IS NOT NULL
+  discharge.event_datetime IS NOT NULL
 ;
 ",
 .con = DBI::ANSI()
@@ -120,18 +112,18 @@ core_q <- DBI::dbGetQuery(pg, core_q_query)
 lm_sgc_q_query <- glue::glue_sql("
 SELECT
   sites.abbreviation AS discharge_location,
-  r.event_datetime AS discharge_datetime,
-  r.water_height AS water_height,
-  r.discharge AS raw_discharge,
-  r.discharge_corrected AS edited_discharge
+  discharge.event_datetime AS discharge_datetime,
+  discharge.water_height AS water_height,
+  discharge.discharge AS raw_discharge,
+  discharge.discharge_corrected AS edited_discharge
 FROM
-  stormwater.discharge r
-  JOIN stormwater.sites ON (r.site_id = sites.site_id)
+  stormwater.discharge
+  JOIN stormwater.sites ON (discharge.site_id = sites.site_id)
 WHERE
   sites.abbreviation IN ('SGC', 'LM') AND
-  -- (r.discharge IS NOT NULL OR r.discharge_corrected IS NOT NULL)
-  r.event_datetime >= '2012-08-24' AND
-  r.event_datetime IS NOT NULL
+  -- (discharge.discharge IS NOT NULL OR discharge.discharge_corrected IS NOT NULL)
+  discharge.event_datetime >= '2012-08-24' AND
+  discharge.event_datetime IS NOT NULL
 ;
 ",
 .con = DBI::ANSI()
@@ -151,19 +143,10 @@ dplyr::mutate(
   discharge_location = as.factor(discharge_location)
 )
 
-
 try({
   capeml::write_attributes(discharge, overwrite = FALSE)
   capeml::write_factors(discharge, overwrite = FALSE)
 })
-
-discharge_desc <- "discharge at CAP LTER stormwater sampling sites"
-
-discharge_DT <- capeml::create_dataTable(
-  dfname         = discharge,
-  description    = discharge_desc,
-  dateRangeField = "discharge_datetime"
-)
 
 ```
 
@@ -176,21 +159,21 @@ discharge_DT <- capeml::create_dataTable(
 
 particulates_query <- glue::glue_sql("
 SELECT
-  s.bottle,
+  samples.bottle,
   sites.abbreviation AS runoff_location,
-  s.sample_datetime AS runoff_datetime,
-  r.replicate AS replicate,
-  r.filter_initial AS filter_wt,
-  r.filter_dry AS filter_dry_wt,
-  r.volume_filtered AS vol_filtered,
-  r.filter_ashed AS filter_ash_wt,
-  r.data_qualifier AS data_qualifier,
-  r.comments AS comments
+  samples.sample_datetime AS runoff_datetime,
+  solids.replicate AS replicate,
+  solids.filter_initial AS filter_wt,
+  solids.filter_dry AS filter_dry_wt,
+  solids.volume_filtered AS vol_filtered,
+  solids.filter_ashed AS filter_ash_wt,
+  solids.data_qualifier AS data_qualifier,
+  solids.comments AS comments
 FROM
-  stormwater.solids r
-  JOIN stormwater.samples s ON (s.sample_id = r.sample_id)
-  JOIN stormwater.sites ON (s.site_id = sites.site_id)
-  LEFT JOIN stormwater.data_qualifier dq ON (dq.data_qualifier_id = r.data_qualifier)
+  stormwater.solids
+  JOIN stormwater.samples ON (samples.sample_id = solids.sample_id)
+  JOIN stormwater.sites ON (samples.site_id = sites.site_id)
+  LEFT JOIN stormwater.data_qualifier dq ON (dq.data_qualifier_id = solids.data_qualifier)
 WHERE
   sites.abbreviation NOT IN ({snaz_sites*})
 ;
@@ -204,7 +187,8 @@ particulates <- particulates |>
   dplyr::mutate(
     blank           = as.factor(ifelse(grepl("blk|blank", bottle, ignore.case = T), "TRUE", "FALSE")),
     runoff_location = as.factor(runoff_location),
-    data_qualifier  = as.character(data_qualifier)
+    data_qualifier  = as.character(data_qualifier),
+    replicate       = as.character(replicate)
   ) |>
   dplyr::select(-bottle)
 
@@ -212,14 +196,6 @@ try({
   capeml::write_attributes(particulates, overwrite = FALSE)
   capeml::write_factors(particulates, overwrite = FALSE)
 })
-
-particulates_desc <- "mass of particulates in stormwater during runoff-generating storms at CAP LTER stormwater sampling sites"
-
-particulates_DT <- capeml::create_dataTable(
-  dfname         = particulates,
-  description    = particulates_desc,
-  dateRangeField = "runoff_datetime"
-)
 
 ```
 
@@ -254,47 +230,33 @@ try({
   capeml::write_attributes(sampling_location, overwrite = FALSE)
 })
 
-sampling_location_desc <- "CAP LTER stormwater sampling locations"
-
-sampling_location_SV <- capemlGIS::create_vector(
-  vector_name = sampling_location,
-  description = sampling_location_desc
-)
-
 ```
 
 
-## analyses
+## analytes
 
 ```{r}
 #| eval: TRUE
-#| label: analyses
+#| label: analytes
 
-analytes <- DBI::dbGetQuery(pg,"
+analytes <- DBI::dbGetQuery(pg, "
 SELECT
   DISTINCT ON (analysis_name)
-  analysis_name as analysis,
-  analysis_description AS description,
-  units,
-  instrument
+  analysis.analysis_name as analysis,
+  analysis.analysis_description AS description,
+  analysis.units,
+  analysis.instrument
 FROM
   stormwater.analysis
-  RIGHT JOIN stormwater.results r ON (r.analysis_id = analysis.analysis_id)
+  RIGHT JOIN stormwater.results ON (results.analysis_id = analysis.analysis_id)
 WHERE
-  analysis_name IS NOT NULL
+  analysis.analysis_name IS NOT NULL
 ;
 ")
 
 try({
   capeml::write_attributes(analytes, overwrite = FALSE)
 })
-
-analytes_desc <- "catalog and details of water chemistry analytes measured as part of CAP LTER stormwater monitoring"
-
-analytes_DT <- capeml::create_dataTable(
-  dfname      = analytes,
-  description = analytes_desc
-)
 
 ```
 
@@ -317,9 +279,15 @@ so that we can easily reconstruct indian_bend_wash_catchments when updating.
 
 # remove SNAZ sites
 indian_bend_wash_catchments <- sf::read_sf("stormwater_catchments.geojson") |>
-dplyr::filter(!grepl("bella|enc|kiw|martin|mont|pierce|sweet", catchment, ignore.case = TRUE))
+  dplyr::filter(
+    !grepl(
+      pattern = "bella|enc|kiw|martin|mont|pierce|sweet",
+      x = catchment,
+      ignore.case = TRUE
+    )
+  )
 
-dplyr::glimpse(indian_bend_wash_catchments)
+# dplyr::glimpse(indian_bend_wash_catchments)
 
 try({
   capeml::write_attributes(indian_bend_wash_catchments, overwrite = FALSE)
@@ -419,22 +387,14 @@ eml     <- capeml::create_eml()
 EML::eml_validate(eml)
 capeml::write_cap_eml()
 
-source("~/Documents/localSettings/aws.s3")
-
-lapply(
-  X   = list.files(pattern = ""),
-  FUN = capeml::data_to_amz
-)
-
 source("~/Documents/localSettings/edi.R")
 capeml::get_package_evaluation(full_report = FALSE)
 
 # report <- capeml::get_package_evaluation(full_report = TRUE)
 # xml2::write_xml(report, "/tmp/report.xml")
 
-capeml::create_package(environment = "staging")
+# capeml::create_package(environment = "staging")
 
 EDIutils::logout()
 
 ```
-

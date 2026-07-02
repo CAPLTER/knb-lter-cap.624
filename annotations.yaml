@@ -1,0 +1,54 @@
+- name: PH
+  valueLabel: Acidity
+  valueURI: http://qudt.org/vocab/unit/PH
+  references: 3f4b17e12246bcd77be5b1dd6b118a10_5
+  propertyLabel: has unit
+  propertyURI: http://qudt.org/schema/qudt/hasUnit
+- name: MilliGM-PER-L
+  valueLabel: Milligram Per Liter
+  valueURI: http://qudt.org/vocab/unit/MilliGM-PER-L
+  references: 3f4b17e12246bcd77be5b1dd6b118a10_8
+  propertyLabel: has unit
+  propertyURI: http://qudt.org/schema/qudt/hasUnit
+- name: M
+  valueLabel: Meter
+  valueURI: http://qudt.org/vocab/unit/M
+  references: bf3332f1d3a4d9ab93e92f0a8b68bfa2_3
+  propertyLabel: has unit
+  propertyURI: http://qudt.org/schema/qudt/hasUnit
+- name: L-PER-SEC
+  valueLabel: Liter Per Second
+  valueURI: http://qudt.org/vocab/unit/L-PER-SEC
+  references: bf3332f1d3a4d9ab93e92f0a8b68bfa2_4
+  propertyLabel: has unit
+  propertyURI: http://qudt.org/schema/qudt/hasUnit
+- name: L-PER-SEC
+  valueLabel: Liter Per Second
+  valueURI: http://qudt.org/vocab/unit/L-PER-SEC
+  references: bf3332f1d3a4d9ab93e92f0a8b68bfa2_5
+  propertyLabel: has unit
+  propertyURI: http://qudt.org/schema/qudt/hasUnit
+- name: GM
+  valueLabel: Gram
+  valueURI: http://qudt.org/vocab/unit/GM
+  references: 1e983068b0d61a75797ac5073c7ac5fe_4
+  propertyLabel: has unit
+  propertyURI: http://qudt.org/schema/qudt/hasUnit
+- name: GM
+  valueLabel: Gram
+  valueURI: http://qudt.org/vocab/unit/GM
+  references: 1e983068b0d61a75797ac5073c7ac5fe_5
+  propertyLabel: has unit
+  propertyURI: http://qudt.org/schema/qudt/hasUnit
+- name: MilliL
+  valueLabel: Millilitre
+  valueURI: http://qudt.org/vocab/unit/MilliL
+  references: 1e983068b0d61a75797ac5073c7ac5fe_6
+  propertyLabel: has unit
+  propertyURI: http://qudt.org/schema/qudt/hasUnit
+- name: GM
+  valueLabel: Gram
+  valueURI: http://qudt.org/vocab/unit/GM
+  references: 1e983068b0d61a75797ac5073c7ac5fe_7
+  propertyLabel: has unit
+  propertyURI: http://qudt.org/schema/qudt/hasUnit

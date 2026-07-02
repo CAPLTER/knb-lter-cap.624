@@ -2,20 +2,36 @@
   analysis:
     attributeName: analysis
     attributeDefinition: 'analyte quantified'
+    propertyURI: ''
+    propertyLabel: ''
+    valueURI: ''
+    valueLabel: ''
     columnClasses: character
     definition: ''
   description:
     attributeName: description
     attributeDefinition: 'analyte description'
+    propertyURI: ''
+    propertyLabel: ''
+    valueURI: ''
+    valueLabel: ''
     columnClasses: character
     definition: ''
   units:
     attributeName: units
     attributeDefinition: 'unit of measure'
+    propertyURI: ''
+    propertyLabel: ''
+    valueURI: ''
+    valueLabel: ''
     columnClasses: character
     definition: ''
   instrument:
     attributeName: instrument
     attributeDefinition: 'analytical instrument'
+    propertyURI: ''
+    propertyLabel: ''
+    valueURI: ''
+    valueLabel: ''
     columnClasses: character
     definition: ''

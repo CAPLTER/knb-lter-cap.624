@@ -2,16 +2,28 @@
   discharge_location:
     attributeName: discharge_location
     attributeDefinition: 'sampling location identifier'
+    propertyURI: ''
+    propertyLabel: ''
+    valueURI: ''
+    valueLabel: ''
     columnClasses: factor
   discharge_datetime:
     attributeName: discharge_datetime
     attributeDefinition: 'measurement date and time'
+    propertyURI: ''
+    propertyLabel: ''
+    valueURI: ''
+    valueLabel: ''
     columnClasses: Date
     formatString: YYYY-MM-DD hh:mm:ss
   water_height:
     attributeName: water_height
     attributeDefinition: 'water height above sensor'
-    unit: 'meter'
+    propertyURI: ''
+    propertyLabel: ''
+    valueURI: ''
+    valueLabel: ''
+    unit: 'M'
     numberType: real
     minimum: 0.0
     maximum: 2.805
@@ -19,7 +31,11 @@
   raw_discharge:
     attributeName: raw_discharge
     attributeDefinition: 'discharge (Q) estimated from Manning equation'
-    unit: 'literPerSecond'
+    propertyURI: ''
+    propertyLabel: ''
+    valueURI: ''
+    valueLabel: ''
+    unit: 'L-PER-SEC'
     numberType: real
     minimum: 0.0
     maximum: 21704.24
@@ -27,7 +43,11 @@
   edited_discharge:
     attributeName: edited_discharge
     attributeDefinition: 'corrections to raw_discharge'
-    unit: 'literPerSecond'
+    propertyURI: ''
+    propertyLabel: ''
+    valueURI: ''
+    valueLabel: ''
+    unit: 'L-PER-SEC'
     numberType: real
     minimum: 0.0
     maximum: 21704.24

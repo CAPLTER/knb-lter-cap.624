@@ -1,0 +1,37 @@
+runoff_chemistry:
+  type: table
+  dfname: runoff_chemistry
+  description: "stormwater runoff chemistry during runoff-generating storms at CAP LTER stormwater sampling sites"
+  dateRangeField: "runoff_datetime"
+  overwrite: TRUE
+  projectNaming: TRUE
+  missingValueCode: ~
+  additional_information: ~
+discharge:
+  type: table
+  dfname: discharge
+  description: "discharge at CAP LTER stormwater sampling sites"
+  dateRangeField: "discharge_datetime"
+  overwrite: TRUE
+  projectNaming: TRUE
+  missingValueCode: ~
+  additional_information: ~
+particulates:
+  type: table
+  dfname: particulates
+  description: "mass of particulates in stormwater during runoff-generating storms at CAP LTER stormwater sampling sites"
+  dateRangeField: "runoff_datetime"
+  overwrite: TRUE
+  projectNaming: TRUE
+  missingValueCode: ~
+  additional_information: ~
+analytes:
+  type: table
+  dfname: analytes
+  description: "catalog and details of water chemistry analytes measured as part of CAP LTER stormwater monitoring"
+  dateRangeField: "~"
+  overwrite: TRUE
+  projectNaming: TRUE
+  missingValueCode: ~
+  additional_information: ~
+

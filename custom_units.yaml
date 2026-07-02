@@ -1,0 +1,12 @@
+- name: PH
+  description: Acidity
+- name: MilliGM-PER-L
+  description: Milligram Per Liter
+- name: M
+  description: Meter
+- name: L-PER-SEC
+  description: Liter Per Second
+- name: GM
+  description: Gram
+- name: MilliL
+  description: Millilitre

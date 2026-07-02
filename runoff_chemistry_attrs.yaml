@@ -2,25 +2,45 @@
   runoff_location:
     attributeName: runoff_location
     attributeDefinition: 'sampling location identifier'
+    propertyURI: ''
+    propertyLabel: ''
+    valueURI: ''
+    valueLabel: ''
     columnClasses: factor
   runoff_datetime:
     attributeName: runoff_datetime
     attributeDefinition: 'date and time of sample collection'
+    propertyURI: ''
+    propertyLabel: ''
+    valueURI: ''
+    valueLabel: ''
     columnClasses: Date
     formatString: YYYY-MM-DD hh:mm:ss
   blank:
     attributeName: blank
     attributeDefinition: 'boolean value indicating whether the sample is a blank'
+    propertyURI: ''
+    propertyLabel: ''
+    valueURI: ''
+    valueLabel: ''
     columnClasses: factor
   sample_comments:
     attributeName: sample_comments
     attributeDefinition: 'technician comments pertaining to site conditions or sample details'
+    propertyURI: ''
+    propertyLabel: ''
+    valueURI: ''
+    valueLabel: ''
     columnClasses: character
     definition: ''
   ph:
     attributeName: ph
     attributeDefinition: 'pH of the sample'
-    unit: 'dimensionless'
+    propertyURI: ''
+    propertyLabel: ''
+    valueURI: ''
+    valueLabel: ''
+    unit: 'PH'
     numberType: real
     minimum: 0.0009
     maximum: 20.6
@@ -28,19 +48,28 @@
   replicate:
     attributeName: replicate
     attributeDefinition: 'sample replicate number'
-    unit: 'number'
-    numberType: natural
-    minimum: 1
-    maximum: 12
-    columnClasses: numeric
+    propertyURI: ''
+    propertyLabel: ''
+    valueURI: ''
+    valueLabel: ''
+    columnClasses: character
+    definition: ''
   analysis_name:
     attributeName: analysis_name
     attributeDefinition: 'analysis type'
+    propertyURI: ''
+    propertyLabel: ''
+    valueURI: ''
+    valueLabel: ''
     columnClasses: factor
   analysis_concentration:
     attributeName: analysis_concentration
     attributeDefinition: 'concentration of analyte'
-    unit: 'milligramPerLiter'
+    propertyURI: ''
+    propertyLabel: ''
+    valueURI: ''
+    valueLabel: ''
+    unit: 'MilliGM-PER-L'
     numberType: real
     minimum: -556.0
     maximum: 3380.0
@@ -48,10 +77,18 @@
   analysis_data_qualifier:
     attributeName: analysis_data_qualifier
     attributeDefinition: 'quality control flag pertaining to sample analysis'
+    propertyURI: ''
+    propertyLabel: ''
+    valueURI: ''
+    valueLabel: ''
     columnClasses: character
     definition: ''
   analysis_comments:
     attributeName: analysis_comments
     attributeDefinition: 'technician comments pertaining to specific analysis'
+    propertyURI: ''
+    propertyLabel: ''
+    valueURI: ''
+    valueLabel: ''
     columnClasses: character
     definition: ''
