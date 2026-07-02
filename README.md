@@ -1,8 +1,11 @@
-# knb-lter-cap.624: CAP LTER stormwater
+## knb-lter-cap.624: CAP LTER stormwater
+
+### knb-lter-cap.624.6 *2026-07-02*
+
+- data refresh
+- Rmd to qmd workflow
 
 ### knb-lter-cap.624.5 *2022-06-02*
-
-#### version 5 reflects a major update to this data package:
 
 * workflow updated to _revised_ capeml config.yaml style
 - data refresh
@@ -14,12 +17,10 @@
   - provenance to knb-lter-cap.702 included here (and, conversely, knb-lter-cap.624 referenced in knb-lter-cap.702)
 - runoff data lacking a datetime value are removed
 
-
 ### knb-lter-cap.624.4 *2022-01-29*
 
 - data refresh
 - convert attributes and factors to yaml style
-
 
 ### knb-lter-cap.624.3
 
@@ -30,7 +31,6 @@
   not recorded on rain samples
 * improved location description
 * locations from table to kml
-
 
 ### knb-lter-cap.624.2
 
